@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/tv_welcome"
         android:layout_width="150dp"
-        android:layout_height="1500dp"
+        android:layout_height="1490dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
