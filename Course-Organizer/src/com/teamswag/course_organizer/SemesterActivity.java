@@ -51,4 +51,4 @@ public class SemesterActivity extends ListActivity {
 								
 	}
 }
-}
+
