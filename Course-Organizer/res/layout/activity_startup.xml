@@ -24,11 +24,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-<<<<<<< HEAD
         android:text="Started"
-=======
-        android:text="Started1213123"
->>>>>>> refs/remotes/origin/master
         android:textSize= "32sp" />
    
 </RelativeLayout>
