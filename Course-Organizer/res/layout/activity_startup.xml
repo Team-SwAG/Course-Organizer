@@ -3,9 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"  >
-    <Button
-        android:id="@+id/new"
-        />
 
     <Button
         android:id="@+id/btn_plus"
@@ -24,7 +21,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Started"
+        android:text="Welcome"
         android:textSize= "32sp" />
    
 </RelativeLayout>
