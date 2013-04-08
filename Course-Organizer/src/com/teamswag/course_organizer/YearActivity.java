@@ -35,18 +35,16 @@ public class YearActivity extends ListActivity {
 			new AlertDialog.Builder(this)
 				.setTitle("Add a Year")
 				.setView(addView)
-				.setPositiveButton("Ok",
-									new DialogInterface.OnClickListener() {
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						ArrayAdapter<String> adapter = (ArrayAdapter<String>)getListAdapter();
-						EditText title = (EditText)addView.findViewById(R.id.tv_year);
+						ArrayAdapter<String> listAdapter = (ArrayAdapter<String>)getListAdapter();
+						ArrayAdapter<String> adapter = listAdapter;
+						EditText title = (EditText) addView.findViewById(R.id.et_year);
 						
 						adapter.add(title.getText().toString());
 					}
 				})
 				.setNegativeButton("Cancel", null)
-				.show();
-										
-								
+				.show();										
 	}
 }
