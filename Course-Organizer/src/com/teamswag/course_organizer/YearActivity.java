@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 public class YearActivity extends ListActivity {
 	
-	ArrayList<String> yearList;
+	ArrayList<String> yearList = new ArrayList<String>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
