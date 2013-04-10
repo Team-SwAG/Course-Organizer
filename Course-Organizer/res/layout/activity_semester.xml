@@ -11,6 +11,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:onClick="plusSemester"
         android:text="+" />
 
     <TextView
@@ -23,17 +24,12 @@
         android:gravity="center_horizontal"
         android:text="Semester"
         android:textSize="32dp" />
-    
-    <ListView 
+
+    <ListView
         android:id="@android:id/list"
-        android:layout_margin="48dp"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/tv_semester"
-        />
-        
-        
-    
-    
+        android:layout_margin="48dp" />
 
 </RelativeLayout>

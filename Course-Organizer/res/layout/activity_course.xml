@@ -26,6 +26,8 @@
         android:text="+"
         android:textSize="32sp"
         android:layout_alignParentBottom="true"
+        android:onClick="plusCourse"
+        
         />
     
 
