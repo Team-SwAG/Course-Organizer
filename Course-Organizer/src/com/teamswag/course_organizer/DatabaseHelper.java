@@ -14,12 +14,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		YearTable.onCreate(db);
+		SemesterTable.onCreate(db);
+		CriteriaTable.onCreate(db);
+		GradeScaleTable.onCreate(db);
+		ItemTable.onCreate(db);
+		
 
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		YearTable.onUpgrade(db, oldVersion, newVersion);
+		SemesterTable.onUpgrade(db, oldVersion, newVersion);
+		CriteriaTable.onUpgrade(db, oldVersion, newVersion);
+		GradeScaleTable.onUpgrade(db, oldVersion, newVersion);
+		ItemTable.onUpgrade(db, oldVersion, newVersion);
 
 	}
 
