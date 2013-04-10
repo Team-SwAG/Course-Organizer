@@ -9,6 +9,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 public class SemesterActivity extends ListActivity {
 
 	ArrayList<String> semesterList = new ArrayList<String>();
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +39,32 @@ public class SemesterActivity extends ListActivity {
 	}
 
 	public void plusSemester(View view) {
-		LayoutInflater inflater = LayoutInflater.from(this);
-		View addView = inflater.inflate(R.layout.activity_inputsemester, null);
-
-		new AlertDialog.Builder(this).setTitle("Add a Semester").setView(addView)
-				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						processAdd(((EditText)findViewById(R.id.et_semester)).getText().toString());
-					}
-				}).setNegativeButton("Cancel", null).show();
+	    AlertDialog.Builder b = new AlertDialog.Builder(this);
+	    b.setTitle("Add a Semester");
+	    final EditText input = new EditText(this);
+	    b.setView(input);
+	    b.setPositiveButton("OK", new DialogInterface.OnClickListener()
+	    {
+	        @Override
+	        public void onClick(DialogInterface dialog, int whichButton)
+	        {
+	           // SHOULD NOW WORK
+	           processAdd(input.getText().toString());
+	        }
+	    });
+	    b.setNegativeButton("CANCEL", null);
+	    b.create().show();
+		
+		
+//		LayoutInflater inflater = LayoutInflater.from(this);
+//		View addView = inflater.inflate(R.layout.activity_inputsemester, null);
+//
+//		new AlertDialog.Builder(this).setTitle("Add a Semester").setView(addView)
+//				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int whichButton) {
+//						processAdd(((EditText)findViewById(R.id.et_semester)).getText().toString());
+//					}
+//				}).setNegativeButton("Cancel", null).show();
 	}
 
 	@Override
@@ -69,7 +88,8 @@ public class SemesterActivity extends ListActivity {
 //	}
 
 	private void processAdd(String s) {
-		ContentValues cv = new ContentValues(1);
+		semesterList.add(s);
+//		ContentValues cv = new ContentValues(1);
 
 //		cv.put(DatabaseHelper.YEAR, s);
 //		db.getWritableDatabase().insert("year", DatabaseHelper.YEAR, cv);

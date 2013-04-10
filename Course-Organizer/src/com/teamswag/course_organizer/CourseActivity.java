@@ -40,6 +40,23 @@ public class CourseActivity extends ListActivity {
 	}
 
 	public void plusCourse(View view) {
+	    AlertDialog.Builder b = new AlertDialog.Builder(this);
+	    b.setTitle("Add a Course");
+	    final EditText input = new EditText(this);
+	    b.setView(input);
+	    b.setPositiveButton("OK", new DialogInterface.OnClickListener()
+	    {
+	        @Override
+	        public void onClick(DialogInterface dialog, int whichButton)
+	        {
+	           // SHOULD NOW WORK
+	           processAdd(input.getText().toString());
+	        }
+	    });
+	    b.setNegativeButton("CANCEL", null);
+	    b.create().show();
+		
+		
 //		LayoutInflater inflater = LayoutInflater.from(this);
 //		View addView = inflater.inflate(R.layout.activity_inputyear, null);
 //
@@ -66,6 +83,7 @@ public class CourseActivity extends ListActivity {
 //	}
 //
 	private void processAdd(String s) {
+		courseList.add(s);
 //		ContentValues cv = new ContentValues(1);
 //
 //		cv.put(DatabaseHelper.YEAR, s);

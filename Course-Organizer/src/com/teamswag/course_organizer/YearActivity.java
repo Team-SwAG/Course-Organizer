@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ public class YearActivity extends ListActivity implements
 	private DatabaseHelper db;
 	private Cursor cursor;
 	ListView lv;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +54,34 @@ public class YearActivity extends ListActivity implements
 
 
 	public void plusYear(View view) {
-		LayoutInflater inflater = LayoutInflater.from(this);
-		View addView = inflater.inflate(R.layout.activity_inputyear, null);
-
-		new AlertDialog.Builder(this).setTitle("Add a Year").setView(addView)
-				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
+		
+			    AlertDialog.Builder b = new AlertDialog.Builder(this);
+			    b.setTitle("Add a Year");
+			    final EditText input = new EditText(this);
+			    input.setInputType(InputType.TYPE_CLASS_NUMBER);
+			    b.setView(input);
+			    b.setPositiveButton("OK", new DialogInterface.OnClickListener()
+			    {
+			        @Override
+			        public void onClick(DialogInterface dialog, int whichButton)
+			        {
+			           // SHOULD NOW WORK
+			           processAdd(input.getText().toString());
+			        }
+			    });
+			    b.setNegativeButton("CANCEL", null);
+			    b.create().show();
+			    
+//		LayoutInflater inflater = LayoutInflater.from(this);
+//		View addView = inflater.inflate(R.layout.activity_inputyear, null);
+//
+//		new AlertDialog.Builder(this).setTitle("Add a Year").setView(addView)
+//				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int whichButton) {
 //						processAdd(((EditText)findViewById(R.id.et_year)).getText().toString());
-					}
-				}).setNegativeButton("Cancel", null).show();
+//						
+//					}
+//				}).setNegativeButton("Cancel", null).show();
 	}
 
 	@Override
@@ -78,11 +99,13 @@ public class YearActivity extends ListActivity implements
 	}
 
 	private void processAdd(String s) {
-		ContentValues cv = new ContentValues(1);
+//		ContentValues cv = new ContentValues(1);
 
 //		cv.put(DatabaseHelper.YEAR, s);
 //		db.getWritableDatabase().insert("year", DatabaseHelper.YEAR, cv);
 //		cursor.requery();
+		
+		yearList.add(s);
 	}
 
 	private void processDelete(long rowId) {
