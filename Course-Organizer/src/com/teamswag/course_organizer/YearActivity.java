@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -29,7 +30,7 @@ public class YearActivity extends ListActivity {
 		super.onResume();
 	}
 	
-	private void plusYear() {
+	public void plusYear(View v) {
 			final View addView=getLayoutInflater().inflate(R.layout.activity_inputyear, null);
 			
 			new AlertDialog.Builder(this)
