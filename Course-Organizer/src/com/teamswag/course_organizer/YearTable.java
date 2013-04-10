@@ -9,9 +9,9 @@ public class YearTable {
 	public static final String COLUMN_NAME = "name";
 
 	public static void onCreate(SQLiteDatabase db) {
-		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
-				+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-				+ COLUMN_NAME + " TEXT NOT NULL);");
+		db.execSQL("CREATE TABLE " + NAME + " (" + COLUMN_ID
+				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
+				+ " INTEGER);");
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,

@@ -2,125 +2,85 @@ package com.teamswag.course_organizer;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
 public class SemesterActivity extends ListActivity {
 
-	ArrayList<String> semesterList = new ArrayList<String>();
+	private ArrayList<String> semesterList = new ArrayList<String>();
+	private ArrayAdapter<String> aa;
+	private DatabaseHelper db;
+	private Cursor cursor;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_semester);
-		
-		ArrayAdapter<String> bb = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, semesterList);
-		setListAdapter(bb);
-		bb.add("Fall");
+
+		db = new DatabaseHelper(this);
+		getSemesters();
+
+		aa = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, semesterList);
+		setListAdapter(aa);
 
 	}
+	
 	@Override
-	public void onResume() {
-		super.onResume();
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Intent course = new Intent(SemesterActivity.this, CourseActivity.class);
+		startActivity(course);
 	}
 
 	public void plusSemester(View view) {
-	    AlertDialog.Builder b = new AlertDialog.Builder(this);
-	    b.setTitle("Add a Semester");
-	    final EditText input = new EditText(this);
-	    b.setView(input);
-	    b.setPositiveButton("OK", new DialogInterface.OnClickListener()
-	    {
-	        @Override
-	        public void onClick(DialogInterface dialog, int whichButton)
-	        {
-	           // SHOULD NOW WORK
-	           processAdd(input.getText().toString());
-	        }
-	    });
-	    b.setNegativeButton("CANCEL", null);
-	    b.create().show();
-		
-		
-//		LayoutInflater inflater = LayoutInflater.from(this);
-//		View addView = inflater.inflate(R.layout.activity_inputsemester, null);
-//
-//		new AlertDialog.Builder(this).setTitle("Add a Semester").setView(addView)
-//				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//					public void onClick(DialogInterface dialog, int whichButton) {
-//						processAdd(((EditText)findViewById(R.id.et_semester)).getText().toString());
-//					}
-//				}).setNegativeButton("Cancel", null).show();
+		AlertDialog.Builder b = new AlertDialog.Builder(this);
+		b.setTitle("Add a Semester");
+		final EditText input = new EditText(this);
+		b.setView(input);
+		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+				processAdd(input.getText().toString());
+			}
+		});
+		b.setNegativeButton("CANCEL", null);
+		b.create().show();
+
 	}
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Intent course = new Intent(SemesterActivity.this,CourseActivity.class);
-		startActivity(course);
-	}
+
+	private void getSemesters() {
+		cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + SemesterTable.COLUMN_NAME + " FROM "
+						+ SemesterTable.NAME + " ORDER BY "
+						+ SemesterTable.COLUMN_NAME + " ASC", null);
 	
-//	@Override
-//	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
-//			long arg3) {
-//		new AlertDialog.Builder(this).setTitle("Confirm Delete")
-//				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//
-//					}
-//				}).setNegativeButton("Cancel", null).show();
-//		return true;
-//	}
+		semesterList.clear();
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			semesterList.add(cursor.getString(0));
+			cursor.moveToNext();
+		}
+		cursor.close();
+	
+	}
 
 	private void processAdd(String s) {
-		semesterList.add(s);
-//		ContentValues cv = new ContentValues(1);
+		ContentValues cv = new ContentValues(1);
 
-//		cv.put(DatabaseHelper.YEAR, s);
-//		db.getWritableDatabase().insert("year", DatabaseHelper.YEAR, cv);
-//		cursor.requery();
+		cv.put(SemesterTable.COLUMN_NAME, s);
+		db.getWritableDatabase().insert(SemesterTable.NAME, null, cv);
+		getSemesters();
+		aa.notifyDataSetChanged();
 	}
 
-	private void processDelete(long rowId) {
-//		String[] args = { String.valueOf(rowId) };
-//		db.getWritableDatabase().delete("year", "_ID=?", args);
-	}
-
-	/* Removed the following and included the same dialog prompt as plusYear in YearActivity */
-//	private void plusSemester() {
-//			final View addView=getLayoutInflater().inflate(R.layout.activity_inputsemester, null);
-//			
-//			new AlertDialog.Builder(this)
-//				.setTitle("Add a Semester")
-//				.setView(addView)
-//				.setPositiveButton("Ok",
-//									new DialogInterface.OnClickListener() {
-//					public void onClick(DialogInterface dialog, int whichButton) {
-//						ArrayAdapter<String> adapter = (ArrayAdapter<String>)getListAdapter();
-//						EditText title = (EditText)addView.findViewById(R.id.tv_semester);
-//						
-//						adapter.add(title.getText().toString());
-//					}
-//				})
-//				.setNegativeButton("Cancel", null)
-//				.show();
-//										
-//								
-//	}
 }
-

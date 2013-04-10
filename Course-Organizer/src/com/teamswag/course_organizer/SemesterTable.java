@@ -10,15 +10,16 @@ public class SemesterTable {
 
 	public static void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
-				+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
-				+ COLUMN_NAME + " TEXT NOT NULL);");
+				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
+				+ " TEXT NOT NULL);");
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,
 			int newVersion) {
 
-		Log.w(SemesterTable.class.getName(), "Upgrading from version " + oldVersion
-				+ " to version " + newVersion + ", which will destroy all data");
+		Log.w(SemesterTable.class.getName(), "Upgrading from version "
+				+ oldVersion + " to version " + newVersion
+				+ ", which will destroy all data");
 		db.execSQL("DROP TABLE IF EXISTS " + NAME);
 		onCreate(db);
 	}
