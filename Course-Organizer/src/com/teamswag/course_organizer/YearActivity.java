@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,12 +36,20 @@ public class YearActivity extends ListActivity implements
 
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
+		aa.add("1992");
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Intent semester = new Intent(YearActivity.this,SemesterActivity.class);
+		startActivity(semester);
+	}
+
 
 	public void plusYear(View view) {
 		LayoutInflater inflater = LayoutInflater.from(this);
@@ -49,7 +58,7 @@ public class YearActivity extends ListActivity implements
 		new AlertDialog.Builder(this).setTitle("Add a Year").setView(addView)
 				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
-						processAdd(((EditText)findViewById(R.id.et_year)).getText().toString());
+//						processAdd(((EditText)findViewById(R.id.et_year)).getText().toString());
 					}
 				}).setNegativeButton("Cancel", null).show();
 	}
@@ -71,14 +80,15 @@ public class YearActivity extends ListActivity implements
 	private void processAdd(String s) {
 		ContentValues cv = new ContentValues(1);
 
-		cv.put(DatabaseHelper.YEAR, s);
-		db.getWritableDatabase().insert("year", DatabaseHelper.YEAR, cv);
-		cursor.requery();
+//		cv.put(DatabaseHelper.YEAR, s);
+//		db.getWritableDatabase().insert("year", DatabaseHelper.YEAR, cv);
+//		cursor.requery();
 	}
 
 	private void processDelete(long rowId) {
 		String[] args = { String.valueOf(rowId) };
 		db.getWritableDatabase().delete("year", "_ID=?", args);
 	}
+	
 
 }
