@@ -23,7 +23,7 @@ public class YearActivity extends ListActivity {
 	private DatabaseHelper db;
 	private Cursor cursor;
 	String selected;
-	int yearID;
+	String yearID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +66,12 @@ public class YearActivity extends ListActivity {
 		b.create().show();
 	}
 	
+	//might need to  put selected in an array, replace selected with ? and put the array were null is
 	private void getYearId(){
 		cursor = db.getReadableDatabase().rawQuery(
-				"SELECT " + selected + " FROM " + YearTable.NAME, null);
-		yearID = cursor.getPosition();
+				"SELECT " + YearTable.COLUMN_ID + " FROM " + YearTable.NAME + " WHERE " + YearTable.COLUMN_NAME + "=" + selected, null);
+		 cursor.moveToFirst();
+		yearID = cursor.getString(0);
 	}
 
 	private void getYears() {
