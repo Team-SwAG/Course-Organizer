@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class YearActivity extends ListActivity {
 
@@ -38,6 +39,9 @@ public class YearActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Intent semester = new Intent(YearActivity.this, SemesterActivity.class);
+		
+		String Test = yearList.get(position);
+		semester.putExtra("yearP", Test);
 		startActivity(semester);
 	}
 
@@ -60,8 +64,8 @@ public class YearActivity extends ListActivity {
 
 	private void getYears() {
 		cursor = db.getReadableDatabase().rawQuery(
-				"SELECT " + YearTable.COLUMN_NAME + " FROM " + YearTable.NAME
-						+ " ORDER BY " + YearTable.COLUMN_NAME + " DESC", null);
+				"SELECT " + YearTable.COLUMN_NAME + " FROM " + YearTable.NAME 
+				+ " ORDER BY " + YearTable.COLUMN_NAME + " DESC", null);
 	
 		yearList.clear();
 		cursor.moveToFirst();

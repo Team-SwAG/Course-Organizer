@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class SemesterActivity extends ListActivity {
 
@@ -20,24 +21,45 @@ public class SemesterActivity extends ListActivity {
 	private ArrayAdapter<String> aa;
 	private DatabaseHelper db;
 	private Cursor cursor;
+	TextView changePathText;
+	String yearPath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_semester);
-
+		
+		Bundle bundle = getIntent().getExtras();
+		if(bundle!=null){
+			yearPath = bundle.getString("yearP");
+		}
+		
 		db = new DatabaseHelper(this);
 		getSemesters();
 
 		aa = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, semesterList);
 		setListAdapter(aa);
+		
+		
+		changePathText = (TextView) findViewById(R.id.tv_semesteryear);
+		
+		changePathText.setText(
+			    yearPath);
 
+	}
+	
+	public void pathYear (View v){
+		Intent path = new Intent(SemesterActivity.this, YearActivity.class);
+		startActivity(path);;
 	}
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
+		String semesterP = semesterList.get(position);
 		Intent course = new Intent(SemesterActivity.this, CourseActivity.class);
+		course.putExtra("semesterP", semesterP);
+		course.putExtra("yearP", yearPath);
 		startActivity(course);
 	}
 

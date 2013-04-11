@@ -16,10 +16,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CourseActivity extends ListActivity {
 
 	ArrayList<String> courseList = new ArrayList<String>();
+	TextView changePathYear;
+	TextView changePathSemester;
+	String yearPath;
+	String semesterPath;
 	
 	
 	@Override
@@ -31,11 +36,43 @@ public class CourseActivity extends ListActivity {
 		setListAdapter(cc);
 		cc.add("CSC 4900");
 		
+		Bundle bundle = getIntent().getExtras();
+		if(bundle!=null){
+			semesterPath = bundle.getString("semesterP");
+			yearPath = bundle.getString("yearP");
+
+		}
+		
+		changePathYear = (TextView) findViewById(R.id.tv_courseyear);
+		
+		changePathYear.setText(
+			    yearPath);
+		changePathSemester = (TextView) findViewById(R.id.tv_coursesemester);
+		
+		changePathSemester.setText(" -> " +
+			    semesterPath);
+		
+		
+	}
+	
+	public void pathYear (View v){
+		Intent path = new Intent(CourseActivity.this, YearActivity.class);
+		startActivity(path);;
+	}
+	
+	public void pathSemester (View v){
+		Intent path = new Intent(CourseActivity.this, SemesterActivity.class);
+		path.putExtra("yearP", yearPath);
+		startActivity(path);;
 	}
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
+		String coursePath = courseList.get(position);
 		Intent criteria = new Intent(CourseActivity.this,CriteriaActivity.class);
+		criteria.putExtra("yearP", yearPath);
+		criteria.putExtra("semesterP", semesterPath);
+		criteria.putExtra("courseP", coursePath);
 		startActivity(criteria);
 	}
 

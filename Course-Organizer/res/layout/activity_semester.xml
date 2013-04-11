@@ -20,16 +20,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="42dp"
+        android:layout_marginTop="28dp"
         android:gravity="center_horizontal"
         android:text="Semester"
         android:textSize="32dp" />
+    
+        <TextView
+        android:id="@+id/tv_semesteryear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="" 
+        android:clickable="true"
+        android:onClick="pathYear"
+        />
 
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tv_semester"
-        android:layout_margin="48dp" />
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_semester"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="48dp" >
+
+        </ListView>
 
 </RelativeLayout>

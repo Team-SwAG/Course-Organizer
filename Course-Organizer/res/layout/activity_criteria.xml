@@ -5,15 +5,6 @@
     tools:context=".CriteriaActivity" 
    >
 
-    <TextView
-        android:id="@+id/tvCriteria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="32sp"
-        android:text="Criteria"
-         />
-
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
@@ -30,4 +21,45 @@
         android:layout_alignParentBottom="true"
         android:text="+"
         android:textSize="32sp" />
+
+     <TextView
+         android:id="@+id/tv_criteriayear"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentTop="true"
+         android:text="year" 
+         android:clickable="true"
+         android:onClick="pathYear"
+         />
+
+     <TextView
+         android:id="@+id/tvCriteria"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/tv_criteriayear"
+         android:layout_centerHorizontal="true"
+         android:text="Criteria"
+         android:textSize="32sp" />
+
+     <TextView
+         android:id="@+id/tv_criteriasemester"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/tvCriteria"
+         android:layout_toRightOf="@+id/tv_criteriayear"
+         android:clickable="true"
+         android:onClick="pathSemester"
+         android:text="semester" />
+
+     <TextView
+         android:id="@+id/tv_criteriacourse"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/tvCriteria"
+         android:layout_toRightOf="@+id/tv_criteriasemester"
+         android:clickable="true"
+         android:onClick="pathCourse"
+         android:text="course" />
+
 </RelativeLayout>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CriteriaActivity extends ListActivity {
 	
@@ -20,6 +21,12 @@ public class CriteriaActivity extends ListActivity {
 	private ArrayAdapter<String> aa;
 	private DatabaseHelper db;
 	private Cursor cursor;
+	TextView changePathYear;
+	TextView changePathSemester;
+	TextView changePathCourse;
+	String yearPath;
+	String semesterPath;
+	String coursePath;
 	
 	
 	@Override
@@ -35,7 +42,47 @@ public class CriteriaActivity extends ListActivity {
 				android.R.layout.simple_list_item_1, criteriaList);
 		setListAdapter(aa);
 		
+		Bundle bundle = getIntent().getExtras();
+		if(bundle!=null){
+			yearPath = bundle.getString("yearP");
+			semesterPath = bundle.getString("semesterP");
+			coursePath = bundle.getString("courseP");
+
+		}
+		
+		changePathYear = (TextView) findViewById(R.id.tv_criteriayear);
+		changePathYear.setText(yearPath);
+		changePathCourse = (TextView) findViewById(R.id.tv_criteriacourse);
+		
+		changePathCourse.setText(" -> " +
+			    coursePath);
+		changePathSemester = (TextView) findViewById(R.id.tv_criteriasemester);
+		
+		changePathSemester.setText(" -> " +
+			    semesterPath);
+		
+
+		
 	}
+	
+	public void pathYear (View v){
+		Intent path = new Intent(CriteriaActivity.this, YearActivity.class);
+		startActivity(path);;
+	}
+	
+	public void pathSemester (View v){
+		Intent path = new Intent(CriteriaActivity.this, SemesterActivity.class);
+		path.putExtra("yearP", yearPath);
+		startActivity(path);;
+	}
+	
+	public void pathCourse (View v){
+		Intent path = new Intent(CriteriaActivity.this, CourseActivity.class);
+		path.putExtra("yearP", yearPath);
+		path.putExtra("semesterP", semesterPath);
+		startActivity(path);;
+	}
+	
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {

@@ -3,21 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CourseActivity" >
-
-    <TextView
-        android:id="@+id/tv_course"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="32sp"
-        android:text="Course"/>
-    
-    <ListView 
-        android:id="@android:id/list"
-        android:layout_below="@id/tv_course"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="48dp"/>
     
     <Button 
         android:id="@+id/tv_pluscourse"
@@ -29,6 +14,44 @@
         android:onClick="plusCourse"
         
         />
-    
+
+    <TextView
+        android:id="@+id/tv_courseyear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text=""
+        android:clickable="true"
+        android:onClick="pathYear"
+         />
+
+    <TextView
+        android:id="@+id/tv_coursesemester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_courseyear"
+        android:text=""
+        android:clickable="true" 
+        android:onClick="pathSemester"/>
+
+    <TextView
+        android:id="@+id/tv_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_coursesemester"
+        android:layout_centerHorizontal="true"
+        android:text="Course"
+        android:textSize="32sp" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_course"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="48dp" >
+    </ListView>
 
 </RelativeLayout>
