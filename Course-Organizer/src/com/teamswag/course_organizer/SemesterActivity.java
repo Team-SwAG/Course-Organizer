@@ -23,6 +23,7 @@ public class SemesterActivity extends ListActivity {
 	private Cursor cursor;
 	TextView changePathText;
 	String yearPath;
+	int yearID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class SemesterActivity extends ListActivity {
 		Bundle bundle = getIntent().getExtras();
 		if(bundle!=null){
 			yearPath = bundle.getString("yearP");
+			yearID = bundle.getInt("yearID");
 		}
 		
 		db = new DatabaseHelper(this);
@@ -46,8 +48,18 @@ public class SemesterActivity extends ListActivity {
 		
 		changePathText.setText(
 			    yearPath);
+//		testInput();
 
 	}
+	
+//	private void testInput(){
+//		
+//		Cursor cursor = db.getReadableDatabase().query( YearTable.COLUMN_NAME, null, YearTable.COLUMN_ID.toString(), null, YearTable.COLUMN_ID+"="+yearID, null, null);
+//		cursor.moveToFirst();
+//		String i = cursor.toString();
+//		semesterList.add(i);
+//		
+//	}
 	
 	public void pathYear (View v){
 		Intent path = new Intent(SemesterActivity.this, YearActivity.class);

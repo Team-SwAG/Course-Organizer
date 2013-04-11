@@ -22,6 +22,8 @@ public class YearActivity extends ListActivity {
 	private ArrayAdapter<String> aa;
 	private DatabaseHelper db;
 	private Cursor cursor;
+	String selected;
+	int yearID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +42,10 @@ public class YearActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Intent semester = new Intent(YearActivity.this, SemesterActivity.class);
 		
-		String Test = yearList.get(position);
-		semester.putExtra("yearP", Test);
+		selected = yearList.get(position);
+		getYearId();
+		semester.putExtra("yearP", selected);
+		semester.putExtra("yearID", yearID);
 		startActivity(semester);
 	}
 
@@ -60,6 +64,12 @@ public class YearActivity extends ListActivity {
 		});
 		b.setNegativeButton("CANCEL", null);
 		b.create().show();
+	}
+	
+	private void getYearId(){
+		cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + selected + " FROM " + YearTable.NAME, null);
+		yearID = cursor.getPosition();
 	}
 
 	private void getYears() {
