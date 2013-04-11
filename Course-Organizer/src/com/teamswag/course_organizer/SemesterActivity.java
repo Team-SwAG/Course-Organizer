@@ -48,7 +48,7 @@ public class SemesterActivity extends ListActivity {
 		
 		changePathText.setText(
 			    yearPath);
-		testInput();
+		//testInput();
 
 	}
 	
