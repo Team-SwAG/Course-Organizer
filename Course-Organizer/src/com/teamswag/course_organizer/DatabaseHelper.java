@@ -15,6 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		YearTable.onCreate(db);
 		SemesterTable.onCreate(db);
+		CourseTable.onCreate(db);
 		CriteriaTable.onCreate(db);
 		GradeScaleTable.onCreate(db);
 		ItemTable.onCreate(db);

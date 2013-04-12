@@ -56,7 +56,7 @@ public class CourseTable {
 	protected static void deleteByYearId(String yearId, DatabaseHelper db) {
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + CourseTable.NAME + " WHERE "
-						+ CourseTable.COLUMN_YEAR_ID + "=\'" + yearId + "\'");
+						+ CourseTable.COLUMN_YEAR_ID + "=" + yearId);
 	}
 
 	protected static void deleteBySemesterId(String semesterId,
