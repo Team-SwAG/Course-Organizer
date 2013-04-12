@@ -75,7 +75,7 @@ public class CourseActivity extends ListActivity implements
 		path.putExtra(YearTable.COLUMN_NAME, yearName);
 		path.putExtra(YearTable.COLUMN_ID, yearId);
 		startActivity(path);
-		;
+		finish();
 	}
 
 	@Override
