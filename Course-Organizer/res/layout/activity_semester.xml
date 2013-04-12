@@ -23,17 +23,17 @@
         android:layout_marginTop="28dp"
         android:gravity="center_horizontal"
         android:text="Semester"
-        android:textSize="32dp" />
+        android:textSize="32sp" />
     
         <TextView
-        android:id="@+id/tv_semesteryear"
+        android:id="@+id/tv_yearpath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="" 
         android:clickable="true"
-        android:onClick="pathYear"
+        android:onClick="returnToYear"
         />
 
         <ListView

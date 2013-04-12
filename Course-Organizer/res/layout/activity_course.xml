@@ -16,7 +16,7 @@
         />
 
     <TextView
-        android:id="@+id/tv_courseyear"
+        android:id="@+id/tv_yearpathcourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -27,11 +27,11 @@
          />
 
     <TextView
-        android:id="@+id/tv_coursesemester"
+        android:id="@+id/tv_semesterpath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/tv_courseyear"
+        android:layout_toRightOf="@id/tv_yearpathcourse"
         android:text=""
         android:clickable="true" 
         android:onClick="pathSemester"/>

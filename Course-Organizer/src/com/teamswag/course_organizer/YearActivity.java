@@ -4,26 +4,26 @@ import java.util.ArrayList;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
-public class YearActivity extends ListActivity {
+public class YearActivity extends ListActivity implements
+		OnItemLongClickListener {
 
 	private ArrayList<String> yearList = new ArrayList<String>();
 	private ArrayAdapter<String> aa;
 	private DatabaseHelper db;
 	private Cursor cursor;
-	String selected;
-	String yearID;
+	private ListView lv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +31,47 @@ public class YearActivity extends ListActivity {
 		setContentView(R.layout.activity_year);
 
 		db = new DatabaseHelper(this);
-		getYears();
+		populateList();
 
 		aa = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, yearList);
 		setListAdapter(aa);
+		lv = getListView();
+		lv.setOnItemLongClickListener(this);
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Intent semester = new Intent(YearActivity.this, SemesterActivity.class);
-		
-		selected = yearList.get(position);
-		getYearId();
-		semester.putExtra("yearP", selected);
-		semester.putExtra("yearID", yearID);
-		startActivity(semester);
+		Intent intent = new Intent(YearActivity.this, SemesterActivity.class);
+
+		String name = yearList.get(position);
+		String yearId = YearTable.getId(name, db);
+
+		intent.putExtra(YearTable.COLUMN_NAME, name);
+		intent.putExtra(YearTable.COLUMN_ID, yearId);
+		startActivity(intent);
+	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view,
+			int position, long id) {
+
+		final String name = yearList.get(position);
+
+		AlertDialog.Builder b = new AlertDialog.Builder(this);
+		b.setTitle("Confirm Delete");
+		b.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int whichButton) {
+				YearTable.delete(name, db);
+				populateList();
+				aa.notifyDataSetChanged();
+			}
+		});
+		b.setNegativeButton("CANCEL", null);
+		b.create().show();
+
+		return true;
 	}
 
 	public void plusYear(View view) {
@@ -59,26 +84,20 @@ public class YearActivity extends ListActivity {
 		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
-				processAdd(input.getText().toString());
+				YearTable.add(input.getText().toString(), db);
+				populateList();
+				aa.notifyDataSetChanged();
 			}
 		});
 		b.setNegativeButton("CANCEL", null);
 		b.create().show();
 	}
-	
-	//might need to  put selected in an array, replace selected with ? and put the array were null is
-	private void getYearId(){
-		cursor = db.getReadableDatabase().rawQuery(
-				"SELECT " + YearTable.COLUMN_ID + " FROM " + YearTable.NAME + " WHERE " + YearTable.COLUMN_NAME + "=" + selected, null);
-		 cursor.moveToFirst();
-		yearID = cursor.getString(0);
-	}
 
-	private void getYears() {
+	private void populateList() {
 		cursor = db.getReadableDatabase().rawQuery(
-				"SELECT " + YearTable.COLUMN_NAME + " FROM " + YearTable.NAME 
-				+ " ORDER BY " + YearTable.COLUMN_NAME + " DESC", null);
-	
+				"SELECT " + YearTable.COLUMN_NAME + " FROM " + YearTable.NAME
+						+ " ORDER BY " + YearTable.COLUMN_NAME + " DESC", null);
+
 		yearList.clear();
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
@@ -86,17 +105,6 @@ public class YearActivity extends ListActivity {
 			cursor.moveToNext();
 		}
 		cursor.close();
-	
-	}
-
-	private void processAdd(String s) {
-		ContentValues cv = new ContentValues(1);
-
-		cv.put(YearTable.COLUMN_NAME, s);
-		db.getWritableDatabase().insert(YearTable.NAME, null, cv);
-		getYears();
-		aa.notifyDataSetChanged();
 
 	}
-
 }
