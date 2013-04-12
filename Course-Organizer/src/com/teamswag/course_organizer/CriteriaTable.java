@@ -1,5 +1,6 @@
 package com.teamswag.course_organizer;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -25,5 +26,14 @@ public class CriteriaTable {
 				+ ", which will destroy all data");
 		db.execSQL("DROP TABLE IF EXISTS " + NAME);
 		onCreate(db);
+	}
+	
+	public static String getId(String name, DatabaseHelper db) {
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + CriteriaTable.COLUMN_ID + " FROM "
+						+ CriteriaTable.NAME + " WHERE "
+						+ CriteriaTable.COLUMN_NAME + "=\'" + name + "\'", null);
+		cursor.moveToFirst();
+		return cursor.getString(0);
 	}
 }

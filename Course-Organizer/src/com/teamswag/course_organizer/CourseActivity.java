@@ -42,14 +42,14 @@ public class CourseActivity extends ListActivity implements
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			
-			//semesterName = bundle.getString(SemesterTable.COLUMN_NAME);
-			semesterName = bundle.getString("ctest");
+			semesterName = bundle.getString(SemesterTable.COLUMN_NAME);
+			//semesterName = bundle.getString("ctest");
 			semesterId = bundle.getString(SemesterTable.COLUMN_ID);
 			yearName = bundle.getString(YearTable.COLUMN_NAME);
 			yearId = bundle.getString(YearTable.COLUMN_ID);
 		}
 		yearPath.setText(yearName);
-		semesterPath.setText(semesterName);
+		semesterPath.setText("->" + semesterName);
 
 		db = new DatabaseHelper(this);
 		populateList();

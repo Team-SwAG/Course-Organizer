@@ -21,12 +21,17 @@ public class CriteriaActivity extends ListActivity {
 	private ArrayAdapter<String> aa;
 	private DatabaseHelper db;
 	private Cursor cursor;
-	TextView changePathYear;
-	TextView changePathSemester;
-	TextView changePathCourse;
-	String yearPath;
-	String semesterPath;
-	String coursePath;
+	TextView yearPath;
+	TextView semesterPath;
+	TextView coursePath;
+	String yearName;
+	String yearId;
+	String semesterName;
+	String semesterId;
+	String courseName;
+	String courseId;
+
+	
 	
 	
 	@Override
@@ -42,52 +47,68 @@ public class CriteriaActivity extends ListActivity {
 				android.R.layout.simple_list_item_1, criteriaList);
 		setListAdapter(aa);
 		
+		yearPath = (TextView) findViewById(R.id.tv_criteriayear);
+		semesterPath = (TextView) findViewById(R.id.tv_criteriasemester);
+		coursePath = (TextView) findViewById(R.id.tv_criteriacourse);
+		
+		
 		Bundle bundle = getIntent().getExtras();
 		if(bundle!=null){
-			yearPath = bundle.getString("yearP");
-			semesterPath = bundle.getString("semesterP");
-			coursePath = bundle.getString("courseP");
+			yearName = bundle.getString(YearTable.COLUMN_NAME);
+			yearId = bundle.getString(YearTable.COLUMN_ID);
+			semesterName = bundle.getString(SemesterTable.COLUMN_NAME);
+			semesterId=bundle.getString(SemesterTable.COLUMN_ID);
+			courseName = bundle.getString(CourseTable.COLUMN_NAME);
+			courseId=bundle.getString(CourseTable.COLUMN_ID);
 
 		}
 		
-		changePathYear = (TextView) findViewById(R.id.tv_criteriayear);
-		changePathYear.setText(yearPath);
-		changePathCourse = (TextView) findViewById(R.id.tv_criteriacourse);
-		
-		changePathCourse.setText(" -> " +
-			    coursePath);
-		changePathSemester = (TextView) findViewById(R.id.tv_criteriasemester);
-		
-		changePathSemester.setText(" -> " +
-			    semesterPath);
+		yearPath.setText(yearName);
+		semesterPath.setText(" ->" + semesterName);
+		coursePath.setText(" ->" + courseName);
 		
 
 		
 	}
 	
-	public void pathYear (View v){
+	public void returnToYear (View v){
 		Intent path = new Intent(CriteriaActivity.this, YearActivity.class);
-		startActivity(path);;
+		startActivity(path);
 	}
 	
-	public void pathSemester (View v){
+	public void returnToSemester (View v){
 		Intent path = new Intent(CriteriaActivity.this, SemesterActivity.class);
-		path.putExtra("yearP", yearPath);
-		startActivity(path);;
+		path.putExtra(YearTable.COLUMN_NAME, yearName);
+		path.putExtra(YearTable.COLUMN_ID, yearId);
+		startActivity(path);
 	}
 	
-	public void pathCourse (View v){
+	public void returnToCourse (View v){
 		Intent path = new Intent(CriteriaActivity.this, CourseActivity.class);
-		path.putExtra("yearP", yearPath);
-		path.putExtra("semesterP", semesterPath);
-		startActivity(path);;
+		path.putExtra(YearTable.COLUMN_NAME, yearName);
+		path.putExtra(YearTable.COLUMN_ID, yearId);
+		path.putExtra(SemesterTable.COLUMN_NAME, semesterName);
+		path.putExtra(SemesterTable.COLUMN_ID, semesterId);
+		startActivity(path);
 	}
 	
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Intent intent = new Intent(CriteriaActivity.this, ItemActivity.class);
-		startActivity(intent);
+		Intent items = new Intent(CriteriaActivity.this, ItemActivity.class);
+		
+		String criteriaName = criteriaList.get(position);
+		String criteriaId = CriteriaTable.getId(criteriaName, db);
+
+		items.putExtra(YearTable.COLUMN_NAME, yearName);
+		items.putExtra(YearTable.COLUMN_ID, yearId);
+		items.putExtra(SemesterTable.COLUMN_NAME, semesterName);
+		items.putExtra(SemesterTable.COLUMN_ID, semesterId);
+		items.putExtra(CourseTable.COLUMN_NAME, courseName);
+		items.putExtra(CourseTable.COLUMN_ID, courseId);
+		items.putExtra(CriteriaTable.COLUMN_NAME, criteriaName);
+		items.putExtra(CriteriaTable.COLUMN_ID, criteriaId);
+		startActivity(items);
 	}
 	
 	public void plusCriteria(View view) {

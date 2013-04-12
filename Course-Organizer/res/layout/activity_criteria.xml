@@ -30,7 +30,7 @@
          android:layout_alignParentTop="true"
          android:text="year" 
          android:clickable="true"
-         android:onClick="pathYear"
+         android:onClick="returnToYear"
          />
 
      <TextView
@@ -49,7 +49,7 @@
          android:layout_above="@+id/tvCriteria"
          android:layout_toRightOf="@+id/tv_criteriayear"
          android:clickable="true"
-         android:onClick="pathSemester"
+         android:onClick="returnToSemester"
          android:text="semester" />
 
      <TextView
@@ -59,7 +59,7 @@
          android:layout_above="@+id/tvCriteria"
          android:layout_toRightOf="@+id/tv_criteriasemester"
          android:clickable="true"
-         android:onClick="pathCourse"
+         android:onClick="returnToCourse"
          android:text="course" />
 
 </RelativeLayout>

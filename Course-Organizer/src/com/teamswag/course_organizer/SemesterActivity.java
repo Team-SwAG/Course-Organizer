@@ -66,8 +66,8 @@ public class SemesterActivity extends ListActivity implements
 		String semesterId = SemesterTable.getId(semesterName, db);
 
 		Intent intent = new Intent(SemesterActivity.this, CourseActivity.class);
-		//intent.putExtra(SemesterTable.COLUMN_NAME, semesterName);
-		intent.putExtra("ctest", semesterName);
+		intent.putExtra(SemesterTable.COLUMN_NAME, semesterName);
+		//intent.putExtra("ctest", semesterName);
 		intent.putExtra(SemesterTable.COLUMN_ID, semesterId);
 		intent.putExtra(YearTable.COLUMN_NAME, yearName);
 		intent.putExtra(YearTable.COLUMN_ID, yearId);
