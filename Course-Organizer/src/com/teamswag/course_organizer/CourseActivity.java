@@ -40,12 +40,13 @@ public class CourseActivity extends ListActivity implements
 		semesterPath = (TextView) findViewById(R.id.tv_semesterpath);
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
+			
 			semesterName = bundle.getString(SemesterTable.COLUMN_NAME);
 			semesterId = bundle.getString(SemesterTable.COLUMN_ID);
 			yearName = bundle.getString(YearTable.COLUMN_NAME);
 			yearId = bundle.getString(YearTable.COLUMN_ID);
 		}
-
+		setPath();
 		db = new DatabaseHelper(this);
 		populateList();
 
@@ -56,6 +57,11 @@ public class CourseActivity extends ListActivity implements
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
 
+	}
+	
+	public void setPath(){
+		yearPath.setText(yearName);
+		semesterPath.setText(semesterName);
 	}
 
 	public void returnToYear(View v) {
@@ -135,9 +141,9 @@ public class CourseActivity extends ListActivity implements
 		cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + CourseTable.COLUMN_NAME + " FROM "
 						+ CourseTable.NAME + " WHERE "
-						+ CourseTable.COLUMN_YEAR_ID + "=\'" + yearId
-						+ "\' AND " + CourseTable.COLUMN_SEMESTER_ID + "=\'"
-						+ semesterId + "\' ORDER BY " + CourseTable.COLUMN_NAME
+						+ CourseTable.COLUMN_YEAR_ID + "=" + yearId
+						+ " AND " + CourseTable.COLUMN_SEMESTER_ID + "="
+						+ semesterId + " ORDER BY " + CourseTable.COLUMN_NAME
 						+ " ASC", null);
 
 		courseList.clear();

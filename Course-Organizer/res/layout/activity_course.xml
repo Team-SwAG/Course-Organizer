@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text=""
+        android:text="year"
         android:clickable="true"
         android:onClick="pathYear"
          />
@@ -32,18 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/tv_yearpathcourse"
-        android:text=""
+        android:text="semester"
         android:clickable="true" 
         android:onClick="pathSemester"/>
-
-    <TextView
-        android:id="@+id/tv_course"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_coursesemester"
-        android:layout_centerHorizontal="true"
-        android:text="Course"
-        android:textSize="32sp" />
 
     <ListView
         android:id="@android:id/list"
@@ -53,5 +44,14 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="48dp" >
     </ListView>
+
+    <TextView
+        android:id="@+id/tv_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_semesterpath"
+        android:layout_centerHorizontal="true"
+        android:text="Course"
+        android:textSize="32sp" />
 
 </RelativeLayout>

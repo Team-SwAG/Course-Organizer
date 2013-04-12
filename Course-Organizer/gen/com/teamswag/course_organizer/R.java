@@ -14,32 +14,31 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int btn_plus=0x7f070012;
-        public static final int btn_plusCriteria=0x7f070005;
-        public static final int btn_plusItem=0x7f07000e;
-        public static final int btn_plussemester=0x7f07000f;
-        public static final int btn_plusyear=0x7f070014;
-        public static final int et_item=0x7f07000a;
-        public static final int et_semester=0x7f07000b;
-        public static final int et_year=0x7f07000c;
-        public static final int menu_settings=0x7f070019;
-        public static final int textView1=0x7f070016;
-        public static final int tvCriteria=0x7f070007;
+        public static final int btn_plus=0x7f070011;
+        public static final int btn_plusCriteria=0x7f070004;
+        public static final int btn_plusItem=0x7f07000d;
+        public static final int btn_plussemester=0x7f07000e;
+        public static final int btn_plusyear=0x7f070013;
+        public static final int et_item=0x7f070009;
+        public static final int et_semester=0x7f07000a;
+        public static final int et_year=0x7f07000b;
+        public static final int menu_settings=0x7f070018;
+        public static final int textView1=0x7f070015;
+        public static final int tvCriteria=0x7f070006;
         public static final int tv_course=0x7f070003;
-        public static final int tv_coursesemester=0x7f070004;
-        public static final int tv_criteriacourse=0x7f070009;
-        public static final int tv_criteriasemester=0x7f070008;
-        public static final int tv_criteriayear=0x7f070006;
-        public static final int tv_gpa=0x7f070017;
-        public static final int tv_items=0x7f07000d;
+        public static final int tv_criteriacourse=0x7f070008;
+        public static final int tv_criteriasemester=0x7f070007;
+        public static final int tv_criteriayear=0x7f070005;
+        public static final int tv_gpa=0x7f070016;
+        public static final int tv_items=0x7f07000c;
         public static final int tv_pluscourse=0x7f070000;
-        public static final int tv_semester=0x7f070010;
+        public static final int tv_semester=0x7f07000f;
         public static final int tv_semesterpath=0x7f070002;
-        public static final int tv_welcome=0x7f070013;
-        public static final int tv_year=0x7f070015;
-        public static final int tv_yearpath=0x7f070011;
+        public static final int tv_welcome=0x7f070012;
+        public static final int tv_year=0x7f070014;
+        public static final int tv_yearpath=0x7f070010;
         public static final int tv_yearpathcourse=0x7f070001;
-        public static final int value=0x7f070018;
+        public static final int value=0x7f070017;
     }
     public static final class layout {
         public static final int activity_course=0x7f030000;
