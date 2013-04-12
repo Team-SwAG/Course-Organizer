@@ -8,7 +8,7 @@ import android.util.Log;
 public class SemesterTable {
 	public static final String NAME = "semester";
 	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_NAME = "name";
+	public static final String COLUMN_NAME = "semester_name";
 	public static final String COLUMN_YEAR_ID = "year_id";
 
 	public static void onCreate(SQLiteDatabase db) {

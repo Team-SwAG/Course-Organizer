@@ -6,7 +6,7 @@ import android.util.Log;
 public class ItemTable {
 	public static final String NAME = "item";
 	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_NAME = "name";
+	public static final String COLUMN_NAME = "item_name";
 	public static final String COLUMN_CRITERIA_ID = "criteria_id";
 	public static final String COLUMN_SCORE = "score";
 

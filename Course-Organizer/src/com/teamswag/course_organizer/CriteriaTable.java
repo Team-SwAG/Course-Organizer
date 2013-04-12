@@ -6,7 +6,7 @@ import android.util.Log;
 public class CriteriaTable {
 	public static final String NAME = "criteria";
 	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_NAME = "name";
+	public static final String COLUMN_NAME = "criteria_name";
 	public static final String COLUMN_WEIGHT = "weight";
 	public static final String COLUMN_COURSE_ID = "course_id";
 

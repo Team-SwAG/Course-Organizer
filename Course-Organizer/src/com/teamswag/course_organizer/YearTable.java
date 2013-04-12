@@ -8,7 +8,7 @@ import android.util.Log;
 public class YearTable {
 	public static final String NAME = "year";
 	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_NAME = "name";
+	public static final String COLUMN_NAME = "year_name";
 
 	public static void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + NAME + " (" + COLUMN_ID

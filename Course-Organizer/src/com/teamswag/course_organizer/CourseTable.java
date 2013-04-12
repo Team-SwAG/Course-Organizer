@@ -8,7 +8,7 @@ import android.util.Log;
 public class CourseTable {
 	public static final String NAME = "course";
 	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_NAME = "name";
+	public static final String COLUMN_NAME = "course_name";
 	public static final String COLUMN_YEAR_ID = "year_id";
 	public static final String COLUMN_SEMESTER_ID = "semester_id";
 
