@@ -61,8 +61,8 @@ public class CourseTable {
 
 	protected static void deleteBySemesterId(String semesterId,
 			DatabaseHelper db) {
-		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + CourseTable.NAME + " WHERE "
-						+ CourseTable.COLUMN_SEMESTER_ID + "=" + semesterId);
+//		db.getWritableDatabase().execSQL(
+//				"DELETE FROM " + CourseTable.NAME + " WHERE "
+//						+ CourseTable.COLUMN_SEMESTER_ID + "=" + semesterId);
 	}
 }

@@ -30,14 +30,16 @@ public class CourseActivity extends ListActivity implements
 	String yearId;
 	String semesterName;
 	String semesterId;
+	TextView courseTest;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
 
-		yearPath = (TextView) findViewById(R.id.tv_yearpathcourse);
+		yearPath =(TextView) findViewById(R.id.tv_yearpathcourse);
 		semesterPath = (TextView) findViewById(R.id.tv_semesterpath);
+		courseTest = (TextView) findViewById(R.id.tv_course);
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			
@@ -46,7 +48,10 @@ public class CourseActivity extends ListActivity implements
 			yearName = bundle.getString(YearTable.COLUMN_NAME);
 			yearId = bundle.getString(YearTable.COLUMN_ID);
 		}
-		setPath();
+		yearPath.setText(yearName);
+		semesterPath.setText(semesterName);
+		courseTest.setText(semesterName);
+
 		db = new DatabaseHelper(this);
 		populateList();
 
@@ -59,10 +64,6 @@ public class CourseActivity extends ListActivity implements
 
 	}
 	
-	public void setPath(){
-		yearPath.setText(yearName);
-		semesterPath.setText(semesterName);
-	}
 
 	public void returnToYear(View v) {
 		Intent path = new Intent(CourseActivity.this, YearActivity.class);

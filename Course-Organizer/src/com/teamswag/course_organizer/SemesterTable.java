@@ -51,7 +51,7 @@ public class SemesterTable {
 		CourseTable.deleteBySemesterId(semesterId, db);
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + SemesterTable.NAME + " WHERE "
-						+ SemesterTable.COLUMN_NAME + "=" + name);
+						+ SemesterTable.COLUMN_NAME + "=\'" + name + "\'");
 
 	}
 

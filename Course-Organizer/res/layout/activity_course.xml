@@ -3,55 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CourseActivity" >
-    
-    <Button 
-        android:id="@+id/tv_pluscourse"
-        android:layout_height="60dp"
-        android:layout_width="match_parent"
-        android:text="+"
-        android:textSize="32sp"
-        android:layout_alignParentBottom="true"
-        android:onClick="plusCourse"
-        
-        />
-
+   
     <TextView
         android:id="@+id/tv_yearpathcourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="year"
         android:clickable="true"
         android:onClick="pathYear"
-         />
+        android:text="year" />
 
     <TextView
         android:id="@+id/tv_semesterpath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@android:id/list"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/tv_yearpathcourse"
-        android:text="semester"
-        android:clickable="true" 
-        android:onClick="pathSemester"/>
+        android:clickable="true"
+        android:onClick="pathSemester"
+        android:text="SEMESTERPAHT" />
+    
+    <TextView
+        android:id="@+id/tv_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_semesterpath"
+        android:layout_centerHorizontal="true"
+        android:text="CourseTEST"
+        android:textSize="32sp" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tv_course"
+        android:layout_below="@id/tv_course"
         android:layout_centerHorizontal="true"
         android:layout_margin="48dp" >
     </ListView>
 
-    <TextView
-        android:id="@+id/tv_course"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_semesterpath"
-        android:layout_centerHorizontal="true"
-        android:text="Course"
+
+    
+    <Button
+        android:id="@+id/tv_pluscourse"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:onClick="plusCourse"
+        android:text="+"
         android:textSize="32sp" />
+
+
 
 </RelativeLayout>
