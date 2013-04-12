@@ -43,6 +43,7 @@ public class SemesterActivity extends ListActivity implements
 
 		db = new DatabaseHelper(this);
 		populateList();
+		
 
 		aa = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, semesterList);
