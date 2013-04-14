@@ -43,10 +43,9 @@ public class CourseActivity extends ListActivity implements
 		if (bundle != null) {
 			
 			semesterName = bundle.getString(SemesterTable.COLUMN_NAME);
-			//semesterName = bundle.getString("ctest");
-			semesterId = bundle.getString(SemesterTable.COLUMN_ID);
+			semesterId = bundle.getString(CourseTable.COLUMN_SEMESTER_ID);
 			yearName = bundle.getString(YearTable.COLUMN_NAME);
-			yearId = bundle.getString(YearTable.COLUMN_ID);
+			yearId = bundle.getString(CourseTable.COLUMN_YEAR_ID);
 		}
 		yearPath.setText(yearName);
 		semesterPath.setText("->" + semesterName);
@@ -73,7 +72,7 @@ public class CourseActivity extends ListActivity implements
 	public void returnToSemester(View v) {
 		Intent path = new Intent(CourseActivity.this, SemesterActivity.class);
 		path.putExtra(YearTable.COLUMN_NAME, yearName);
-		path.putExtra(YearTable.COLUMN_ID, yearId);
+		path.putExtra(SemesterTable.COLUMN_YEAR_ID, yearId);
 		startActivity(path);
 		finish();
 	}
@@ -81,16 +80,16 @@ public class CourseActivity extends ListActivity implements
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String courseName = courseList.get(position);
-		String courseId = CourseTable.getId(courseName, db);
+		String courseId = CourseTable.getId(courseName, semesterId, db);
 
 		Intent criteria = new Intent(CourseActivity.this,
 				CriteriaActivity.class);
 		criteria.putExtra(YearTable.COLUMN_NAME, yearName);
-		criteria.putExtra(YearTable.COLUMN_ID, yearId);
+		criteria.putExtra(CourseTable.COLUMN_YEAR_ID, yearId);
 		criteria.putExtra(SemesterTable.COLUMN_NAME, semesterName);
-		criteria.putExtra(SemesterTable.COLUMN_ID, semesterId);
+		criteria.putExtra(CourseTable.COLUMN_SEMESTER_ID, semesterId);
 		criteria.putExtra(CourseTable.COLUMN_NAME, courseName);
-		criteria.putExtra(CourseTable.COLUMN_ID, courseId);
+		criteria.putExtra(CriteriaTable.COLUMN_COURSE_ID, courseId);
 		startActivity(criteria);
 	}
 

@@ -27,42 +27,46 @@ public class CourseTable {
 		db.execSQL("DROP TABLE IF EXISTS " + NAME);
 		onCreate(db);
 	}
-	
-	public static String getId(String name, DatabaseHelper db) {
+
+	public static String getId(String name, String semesterId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
-				"SELECT " + CourseTable.COLUMN_ID + " FROM "
-						+ CourseTable.NAME + " WHERE "
-						+ CourseTable.COLUMN_NAME + "=\'" + name + "\'", null);
+				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
+						+ COLUMN_NAME + "=\'" + name + "\' AND "
+						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
-	
-	public static void add(String name, String semesterId, String yearId, DatabaseHelper db) {
+
+	public static void add(String name, String semesterId, String yearId,
+			DatabaseHelper db) {
 		ContentValues cv = new ContentValues(3);
 
-		cv.put(CourseTable.COLUMN_NAME, name);
-		cv.put(CourseTable.COLUMN_SEMESTER_ID, semesterId);
-		cv.put(CourseTable.COLUMN_YEAR_ID, yearId);
-		db.getWritableDatabase().insert(CourseTable.NAME, null, cv);
+		cv.put(COLUMN_NAME, name);
+		cv.put(COLUMN_SEMESTER_ID, semesterId);
+		cv.put(COLUMN_YEAR_ID, yearId);
+		db.getWritableDatabase().insert(NAME, null, cv);
 	}
-	
-	protected static void delete(String name, DatabaseHelper db) {
+
+	protected static void delete(String name, String semesterId,
+			DatabaseHelper db) {
+		String courseId = getId(name, semesterId, db);
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + CourseTable.NAME + " WHERE "
-						+ CourseTable.COLUMN_NAME + "=" + name);
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_ID + "=\'"
+						+ courseId + "\'");
 
 	}
 
 	protected static void deleteByYearId(String yearId, DatabaseHelper db) {
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + CourseTable.NAME + " WHERE "
-						+ CourseTable.COLUMN_YEAR_ID + "=" + yearId);
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_YEAR_ID + "="
+						+ yearId);
 	}
 
 	protected static void deleteBySemesterId(String semesterId,
 			DatabaseHelper db) {
-//		db.getWritableDatabase().execSQL(
-//				"DELETE FROM " + CourseTable.NAME + " WHERE "
-//						+ CourseTable.COLUMN_SEMESTER_ID + "=" + semesterId);
+		db.getWritableDatabase().execSQL(
+				"DELETE FROM " + CourseTable.NAME + " WHERE "
+						+ CourseTable.COLUMN_SEMESTER_ID + "=\'" + semesterId
+						+ "\'");
 	}
 }

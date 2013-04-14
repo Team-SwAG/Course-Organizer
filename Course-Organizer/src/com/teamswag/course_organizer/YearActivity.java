@@ -48,7 +48,7 @@ public class YearActivity extends ListActivity implements
 		String yearId = YearTable.getId(name, db);
 
 		intent.putExtra(YearTable.COLUMN_NAME, name);
-		intent.putExtra(YearTable.COLUMN_ID, yearId);
+		intent.putExtra(SemesterTable.COLUMN_YEAR_ID, yearId);
 		startActivity(intent);
 	}
 

@@ -1,5 +1,6 @@
 package com.teamswag.course_organizer;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -30,10 +31,23 @@ public class CriteriaTable {
 	
 	public static String getId(String name, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
-				"SELECT " + CriteriaTable.COLUMN_ID + " FROM "
-						+ CriteriaTable.NAME + " WHERE "
-						+ CriteriaTable.COLUMN_NAME + "=\'" + name + "\'", null);
+				"SELECT " + COLUMN_ID + " FROM "
+						+ NAME + " WHERE "
+						+ COLUMN_NAME + "=\'" + name + "\'", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
+	
+	public static void add(String name, String courseId, double weight, DatabaseHelper db) {
+		ContentValues cv = new ContentValues(3);
+
+		cv.put(COLUMN_NAME, name);
+		cv.put(COLUMN_COURSE_ID, courseId);
+		cv.put(COLUMN_WEIGHT, weight);
+		db.getWritableDatabase().insert(NAME, null, cv);
+	}
+	
+	
+	
+	
 }

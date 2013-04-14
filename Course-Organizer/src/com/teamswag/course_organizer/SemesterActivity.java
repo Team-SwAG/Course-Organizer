@@ -37,7 +37,7 @@ public class SemesterActivity extends ListActivity implements
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			yearName = bundle.getString(YearTable.COLUMN_NAME);
-			yearId = bundle.getString(YearTable.COLUMN_ID);
+			yearId = bundle.getString(SemesterTable.COLUMN_YEAR_ID);
 		}
 		yearPath.setText(yearName);
 
@@ -63,14 +63,13 @@ public class SemesterActivity extends ListActivity implements
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String semesterName = semesterList.get(position);
-		String semesterId = SemesterTable.getId(semesterName, db);
+		String semesterId = SemesterTable.getId(semesterName, yearId, db);
 
 		Intent intent = new Intent(SemesterActivity.this, CourseActivity.class);
 		intent.putExtra(SemesterTable.COLUMN_NAME, semesterName);
-		//intent.putExtra("ctest", semesterName);
-		intent.putExtra(SemesterTable.COLUMN_ID, semesterId);
+		intent.putExtra(CourseTable.COLUMN_SEMESTER_ID, semesterId);
 		intent.putExtra(YearTable.COLUMN_NAME, yearName);
-		intent.putExtra(YearTable.COLUMN_ID, yearId);
+		intent.putExtra(CourseTable.COLUMN_YEAR_ID, yearId);
 		startActivity(intent);
 	}
 	
@@ -85,7 +84,7 @@ public class SemesterActivity extends ListActivity implements
 		b.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
-				SemesterTable.delete(name, db);
+				SemesterTable.delete(name, yearId, db);
 				populateList();
 				aa.notifyDataSetChanged();
 			}

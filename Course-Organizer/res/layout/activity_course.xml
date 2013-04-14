@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CourseActivity" >
-   
+
     <TextView
         android:id="@+id/tv_yearpathcourse"
         android:layout_width="wrap_content"
@@ -12,18 +12,18 @@
         android:layout_alignParentTop="true"
         android:clickable="true"
         android:onClick="returnToYear"
-        android:text="year" 
-       />
+        android:text="year" />
+
     <TextView
         android:id="@+id/tv_semesterpath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@android:id/list"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/tv_yearpathcourse"
         android:clickable="true"
         android:onClick="returnToSemester"
-        android:text="SEMESTERPAHT" />
-    
+        android:text="semester" />
+
     <TextView
         android:id="@+id/tv_course"
         android:layout_width="wrap_content"
@@ -31,10 +31,9 @@
         android:layout_below="@+id/tv_semesterpath"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
-
-        android:text="CourseTEST"
+        android:text="Course"
         android:textSize="32sp" />
-    
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
@@ -44,8 +43,6 @@
         android:layout_margin="48dp" >
     </ListView>
 
-
-    
     <Button
         android:id="@+id/tv_pluscourse"
         android:layout_width="match_parent"
@@ -54,7 +51,5 @@
         android:onClick="plusCourse"
         android:text="+"
         android:textSize="32sp" />
-
-
 
 </RelativeLayout>
