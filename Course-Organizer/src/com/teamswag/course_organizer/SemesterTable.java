@@ -14,7 +14,9 @@ public class SemesterTable {
 	public static void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
-				+ " TEXT NOT NULL, " + COLUMN_YEAR_ID + " TEXT NOT NULL);");
+				+ " TEXT NOT NULL, " + COLUMN_YEAR_ID
+				+ " TEXT NOT NULL, UNIQUE (" + COLUMN_NAME + ", "
+				+ COLUMN_YEAR_ID + "));");
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,
@@ -28,12 +30,10 @@ public class SemesterTable {
 	}
 
 	public static String getId(String name, String yearId, DatabaseHelper db) {
-		Cursor cursor = db.getReadableDatabase()
-				.rawQuery(
-						"SELECT " + COLUMN_ID + " FROM "
-								+ NAME + " WHERE "
-								+ COLUMN_NAME + "=\'" + name
-								+ "\' AND " + COLUMN_YEAR_ID + "=\'" + yearId + "\'", null);
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
+						+ COLUMN_NAME + "=\'" + name + "\' AND "
+						+ COLUMN_YEAR_ID + "=\'" + yearId + "\'", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
@@ -50,16 +50,16 @@ public class SemesterTable {
 		String semesterId = getId(name, yearId, db);
 		CourseTable.deleteBySemesterId(semesterId, db);
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + NAME + " WHERE "
-						+ COLUMN_ID + "=\'" + semesterId + "\'");
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_ID + "=\'"
+						+ semesterId + "\'");
 
 	}
 
-	public static void deleteByYearId(String yearId, DatabaseHelper db) {
+	protected static void deleteByYearId(String yearId, DatabaseHelper db) {
 		CourseTable.deleteByYearId(yearId, db);
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + NAME + " WHERE "
-						+ COLUMN_YEAR_ID + "=" + yearId);
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_YEAR_ID + "="
+						+ yearId);
 
 	}
 

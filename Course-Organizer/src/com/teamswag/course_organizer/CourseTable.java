@@ -16,7 +16,8 @@ public class CourseTable {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
 				+ " TEXT NOT NULL, " + COLUMN_YEAR_ID + " INTEGER, "
-				+ COLUMN_SEMESTER_ID + " TEXT NOT NULL);");
+				+ COLUMN_SEMESTER_ID + " TEXT NOT NULL, UNIQUE (" + COLUMN_NAME + ", "
+				+ COLUMN_SEMESTER_ID + "));");
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,
@@ -56,17 +57,17 @@ public class CourseTable {
 
 	}
 
-	protected static void deleteByYearId(String yearId, DatabaseHelper db) {
-		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + NAME + " WHERE " + COLUMN_YEAR_ID + "="
-						+ yearId);
-	}
-
 	protected static void deleteBySemesterId(String semesterId,
 			DatabaseHelper db) {
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + CourseTable.NAME + " WHERE "
 						+ CourseTable.COLUMN_SEMESTER_ID + "=\'" + semesterId
 						+ "\'");
+	}
+
+	protected static void deleteByYearId(String yearId, DatabaseHelper db) {
+		db.getWritableDatabase().execSQL(
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_YEAR_ID + "="
+						+ yearId);
 	}
 }

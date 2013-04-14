@@ -16,7 +16,8 @@ public class CriteriaTable {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
 				+ " TEXT NOT NULL, " + COLUMN_WEIGHT + " REAL, "
-				+ COLUMN_COURSE_ID + " INTEGER);");
+				+ COLUMN_COURSE_ID + " INTEGER, UNIQUE (" + COLUMN_NAME + ", "
+				+ COLUMN_COURSE_ID + "));");
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,
@@ -28,17 +29,18 @@ public class CriteriaTable {
 		db.execSQL("DROP TABLE IF EXISTS " + NAME);
 		onCreate(db);
 	}
-	
-	public static String getId(String name, DatabaseHelper db) {
+
+	public static String getId(String name, String courseId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
-				"SELECT " + COLUMN_ID + " FROM "
-						+ NAME + " WHERE "
-						+ COLUMN_NAME + "=\'" + name + "\'", null);
+				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
+						+ COLUMN_NAME + "=\'" + name + "\' AND "
+						+ COLUMN_COURSE_ID + "=\'" + courseId + "\'", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
-	
-	public static void add(String name, String courseId, double weight, DatabaseHelper db) {
+
+	public static void add(String name, String courseId, double weight,
+			DatabaseHelper db) {
 		ContentValues cv = new ContentValues(3);
 
 		cv.put(COLUMN_NAME, name);
@@ -46,8 +48,20 @@ public class CriteriaTable {
 		cv.put(COLUMN_WEIGHT, weight);
 		db.getWritableDatabase().insert(NAME, null, cv);
 	}
-	
-	
-	
-	
+
+	protected static void delete(String name, String semesterId,
+			DatabaseHelper db) {
+		String courseId = getId(name, semesterId, db);
+		db.getWritableDatabase().execSQL(
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_NAME + "=\'" + name
+						+ "\' AND " + COLUMN_COURSE_ID + "=\'" + courseId + "\'");
+
+	}
+
+	protected static void deleteByCourseId(String courseId, DatabaseHelper db) {
+		db.getWritableDatabase().execSQL(
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_COURSE_ID + "=\'"
+						+ courseId + "\'");
+	}
+
 }

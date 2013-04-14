@@ -105,7 +105,7 @@ public class CourseActivity extends ListActivity implements
 		b.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
-				CourseTable.delete(name, db);
+				CourseTable.delete(name, semesterId, db);
 				populateList();
 				aa.notifyDataSetChanged();
 			}

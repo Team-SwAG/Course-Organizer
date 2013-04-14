@@ -98,7 +98,7 @@ public class CriteriaActivity extends ListActivity {
 		Intent items = new Intent(CriteriaActivity.this, ItemActivity.class);
 		
 		String criteriaName = criteriaList.get(position);
-		String criteriaId = CriteriaTable.getId(criteriaName, db);
+		String criteriaId = CriteriaTable.getId(criteriaName, courseId, db);
 
 		items.putExtra(YearTable.COLUMN_NAME, yearName);
 		items.putExtra(YearTable.COLUMN_ID, yearId);
