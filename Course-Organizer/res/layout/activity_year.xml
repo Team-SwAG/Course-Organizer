@@ -7,11 +7,14 @@
 
     <ListView
         android:id="@android:id/list"
+        android:layout_below="@id/tv_year"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_margin="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
         android:drawSelectorOnTop="false" >
     </ListView>
 
@@ -25,14 +28,11 @@
         android:text="+"
         android:textSize="32sp" />
 
-
-
     <TextView
         android:id="@+id/tv_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
+        android:layout_margin="28dp"
         android:text="Year"
         android:textSize="32sp" />
 
@@ -40,8 +40,8 @@
         android:id="@+id/tv_gpa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
+        android:layout_alignRight="@android:id/list"
+        android:layout_marginTop="28dp"
         android:text="GPA"
         android:textSize="32sp" />
 

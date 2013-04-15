@@ -2,64 +2,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CriteriaActivity" 
-   >
+    tools:context=".CriteriaActivity" >
+
+    <TextView
+        android:id="@+id/tv_criteriayear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:onClick="returnToYear"
+        android:text="year" />
+
+    <TextView
+        android:id="@+id/tv_criteriasemester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_criteriayear"
+        android:clickable="true"
+        android:onClick="returnToSemester"
+        android:text="semester" />
+
+    <TextView
+        android:id="@+id/tv_criteriacourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_criteriasemester"
+        android:clickable="true"
+        android:onClick="returnToCourse"
+        android:text="course" />
+
+    <TextView
+        android:id="@+id/tvCriteria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="28dp"
+        android:text="Criteria"
+        android:textSize="32sp" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="48dp" 
-        />
+        android:layout_below="@id/tvCriteria"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
 
-       
-     <Button
+    <Button
         android:id="@+id/btn_plusCriteria"
-        android:onClick="plusCriteria"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        android:onClick="plusCriteria"
         android:text="+"
         android:textSize="32sp" />
-
-     <TextView
-         android:id="@+id/tv_criteriayear"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-         android:layout_alignParentTop="true"
-         android:text="year" 
-         android:clickable="true"
-         android:onClick="returnToYear"
-         />
-
-     <TextView
-         android:id="@+id/tvCriteria"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/tv_criteriayear"
-         android:layout_centerHorizontal="true"
-         android:text="Criteria"
-         android:textSize="32sp" />
-
-     <TextView
-         android:id="@+id/tv_criteriasemester"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_above="@+id/tvCriteria"
-         android:layout_toRightOf="@+id/tv_criteriayear"
-         android:clickable="true"
-         android:onClick="returnToSemester"
-         android:text="semester" />
-
-     <TextView
-         android:id="@+id/tv_criteriacourse"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_above="@+id/tvCriteria"
-         android:layout_toRightOf="@+id/tv_criteriasemester"
-         android:clickable="true"
-         android:onClick="returnToCourse"
-         android:text="course" />
 
 </RelativeLayout>

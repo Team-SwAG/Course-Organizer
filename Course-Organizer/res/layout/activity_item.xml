@@ -43,11 +43,23 @@
         android:onClick="returnToCriteria"
         android:text="criteria" />
 
+    <TextView
+        android:id="@+id/tv_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="28dp"
+        android:text="Items"
+        android:textSize="32sp" />
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="50dp" />
+        android:layout_below="@id/tv_items"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
 
     <Button
         android:id="@+id/btn_plusItem"
@@ -57,15 +69,5 @@
         android:onClick="plusItem"
         android:text="+"
         android:textSize="32sp" />
-
-    <TextView
-        android:id="@+id/tv_items"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_itemcourse"
-        android:layout_centerHorizontal="true"
-        android:text="Items"
-        android:textSize="32sp"
-        android:textStyle="bold" />
 
 </RelativeLayout>

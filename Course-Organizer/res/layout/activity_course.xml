@@ -28,9 +28,8 @@
         android:id="@+id/tv_course"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_semesterpath"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_margin="28dp"
         android:text="Course"
         android:textSize="32sp" />
 
@@ -40,7 +39,9 @@
         android:layout_height="match_parent"
         android:layout_below="@id/tv_course"
         android:layout_centerHorizontal="true"
-        android:layout_margin="48dp" >
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" >
     </ListView>
 
     <Button
