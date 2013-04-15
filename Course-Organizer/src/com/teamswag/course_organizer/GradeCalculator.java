@@ -18,7 +18,7 @@ public class GradeCalculator {
 		double avg = 0;
 		for (int i = 0; i < weightList.size(); i++)
 			avg += weightList.get(i);
-		return "";
+		return "";		
 
 	}
 }
