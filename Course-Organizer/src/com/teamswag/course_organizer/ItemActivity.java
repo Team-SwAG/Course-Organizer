@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
@@ -37,6 +38,7 @@ public class ItemActivity extends ListActivity implements
 	private String courseId;
 	private String criteriaName;
 	private String criteriaId;
+	private TextView selection;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +70,28 @@ public class ItemActivity extends ListActivity implements
 		db = new DatabaseHelper(this);
 		populateList();
 
-		aa = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, itemList);
-		setListAdapter(aa);
+		//aa = new ArrayAdapter<String>(this,
+		//		R.layout.row, R.id.leftvalue, itemList);
+		
+		selection = (TextView) findViewById(R.id.rightvalue);
+		
+		setListAdapter(new IconicAdapter());
 
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
 
+	}
+	
+	class IconicAdapter extends ArrayAdapter<String>{
+		IconicAdapter() {
+			super(ItemActivity.this,R.layout.row,R.id.leftvalue,itemList);
+		}
+		public View getView(int position, View convertView, ViewGroup parent){
+			View row = super.getView(position, convertView, parent);
+			TextView right = (TextView)row.findViewById(R.id.rightvalue);
+			right.setText("TEST GRADE");
+			return row;
+		}
 	}
 
 	public void returnToYear(View v) {
