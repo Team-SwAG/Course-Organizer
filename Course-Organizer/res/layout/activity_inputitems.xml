@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Semester: " />
+    android:layout_height="match_parent" >
 
     <EditText
-        android:id="@+id/et_item"
+        android:id="@+id/et_itemname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:hint="Semester" />
+        android:singleLine="true" />
+    
+    <TextView 
+        android:id="@+id/tv_itemscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grade(%): "
+        android:hint="95.4"
+        android:layout_below="@id/et_itemname"/>
+    
+    <EditText 
+        android:id="@+id/et_itemscore"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_toRightOf="@id/tv_itemscore"
+        android:layout_below="@id/et_itemname" />
 
-</LinearLayout>
+</RelativeLayout>

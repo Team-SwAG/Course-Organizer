@@ -49,9 +49,10 @@ public class CriteriaTable {
 		db.getWritableDatabase().insert(NAME, null, cv);
 	}
 
-	protected static void delete(String name, String semesterId,
+	protected static void delete(String name, String courseId,
 			DatabaseHelper db) {
-		String courseId = getId(name, semesterId, db);
+		String criteriaId = getId(name, courseId, db);
+		ItemTable.deleteByCriteriaId(criteriaId, db);
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + NAME + " WHERE " + COLUMN_NAME + "=\'" + name
 						+ "\' AND " + COLUMN_COURSE_ID + "=\'" + courseId + "\'");
@@ -59,6 +60,16 @@ public class CriteriaTable {
 	}
 
 	protected static void deleteByCourseId(String courseId, DatabaseHelper db) {
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
+						+ COLUMN_COURSE_ID + "=\'" + courseId + "\'", null);
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			ItemTable.deleteByCriteriaId(cursor.getString(0), db);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + NAME + " WHERE " + COLUMN_COURSE_ID + "=\'"
 						+ courseId + "\'");

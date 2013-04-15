@@ -16,8 +16,8 @@ public class CourseTable {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
 				+ " TEXT NOT NULL, " + COLUMN_YEAR_ID + " INTEGER, "
-				+ COLUMN_SEMESTER_ID + " TEXT NOT NULL, UNIQUE (" + COLUMN_NAME + ", "
-				+ COLUMN_SEMESTER_ID + "));");
+				+ COLUMN_SEMESTER_ID + " TEXT NOT NULL, UNIQUE (" + COLUMN_NAME
+				+ ", " + COLUMN_SEMESTER_ID + "));");
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,
@@ -51,6 +51,7 @@ public class CourseTable {
 	protected static void delete(String name, String semesterId,
 			DatabaseHelper db) {
 		String courseId = getId(name, semesterId, db);
+		CriteriaTable.deleteByCourseId(courseId, db);
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + NAME + " WHERE " + COLUMN_ID + "=\'"
 						+ courseId + "\'");
@@ -59,13 +60,32 @@ public class CourseTable {
 
 	protected static void deleteBySemesterId(String semesterId,
 			DatabaseHelper db) {
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
+						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'", null);
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			CriteriaTable.deleteByCourseId(cursor.getString(0), db);
+			cursor.moveToNext();
+		}
+		cursor.close();
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + CourseTable.NAME + " WHERE "
-						+ CourseTable.COLUMN_SEMESTER_ID + "=\'" + semesterId
+						+ COLUMN_SEMESTER_ID + "=\'" + semesterId
 						+ "\'");
 	}
 
 	protected static void deleteByYearId(String yearId, DatabaseHelper db) {
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
+						+ COLUMN_YEAR_ID + "=\'" + yearId + "\'", null);
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			CriteriaTable.deleteByCourseId(cursor.getString(0), db);
+			cursor.moveToNext();
+		}
+		cursor.close();
+
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + NAME + " WHERE " + COLUMN_YEAR_ID + "="
 						+ yearId);

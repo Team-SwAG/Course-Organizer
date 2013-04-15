@@ -102,7 +102,7 @@ public class CriteriaActivity extends ListActivity implements
 		items.putExtra(YearTable.COLUMN_NAME, yearName);
 		items.putExtra(CourseTable.COLUMN_YEAR_ID, yearId);
 		items.putExtra(SemesterTable.COLUMN_NAME, semesterName);
-		items.putExtra(CourseTable.COLUMN_ID, semesterId);
+		items.putExtra(CourseTable.COLUMN_SEMESTER_ID, semesterId);
 		items.putExtra(CourseTable.COLUMN_NAME, courseName);
 		items.putExtra(CriteriaTable.COLUMN_COURSE_ID, courseId);
 		items.putExtra(CriteriaTable.COLUMN_NAME, criteriaName);
