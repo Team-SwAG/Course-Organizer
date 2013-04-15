@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="28dp"
         android:gravity="center_horizontal"
-        android:text="Semester"
+        android:text="@string/semester_semester"
         android:textSize="32sp" />
 
     <TextView

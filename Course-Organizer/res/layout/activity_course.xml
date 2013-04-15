@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="28dp"
-        android:text="Course"
+        android:text="@string/course_course"
         android:textSize="32sp" />
 
     <ListView

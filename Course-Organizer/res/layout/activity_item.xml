@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="28dp"
-        android:text="Items"
+        android:text="@string/item_item"
         android:textSize="32sp" />
 
     <ListView

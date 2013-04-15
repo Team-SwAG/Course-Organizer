@@ -2,7 +2,14 @@
 <resources>
 
     <string name="app_name">Course Organizer</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
-
+	<string name="startup_welcome">Welcome</string>
+	<string name="year_year">Year</string>
+	<string name="year_gpa">GPA</string>
+	<string name="semester_semester">Semester</string>
+	<string name="item_item">Items</string>
+	<string name="inputitems_grade">Grade(%): </string>
+	<string name="inputitems_hint">95.4</string>
+	<string name="inputcriteria_weight">Weight: </string>
+	<string name="criteria_criteria">Criteria</string>
+	<string name="course_course">Course</string>
 </resources>
