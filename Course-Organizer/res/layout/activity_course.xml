@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CourseActivity" >
+    tools:context=".CourseActivity" 
+    android:background="@drawable/ts_background_no_logo" >
 
     <TextView
         android:id="@+id/tv_yearpathcourse"
@@ -50,7 +51,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:onClick="plusCourse"
-        android:text="+"
-        android:textSize="32sp" />
+        android:textSize="32sp"
+        android:background="@drawable/ts_gold_plus_button" />
 
 </RelativeLayout>

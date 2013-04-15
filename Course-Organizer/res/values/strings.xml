@@ -15,4 +15,9 @@
 	<string name="inputcriteria_weight">Weight: </string>
 	<string name="criteria_criteria">Criteria</string>
 	<string name="course_course">Course</string>
+	<string name="year_addyear">Add a Year</string>
+	<string name="semester_addsemester">Add a Semester</string>
+	<string name="course_addcourse">Add a Course</string>
+	<string name="criteria_addcriteria">Add a Criterion</string>
+	<string name="items_additems">Add a Item</string>
 </resources>
