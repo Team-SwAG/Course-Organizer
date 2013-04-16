@@ -2,6 +2,8 @@ package com.teamswag.course_organizer;
 
 import java.util.ArrayList;
 
+import com.teamswag.course_organizer.ItemActivity.IconicAdapter;
+
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
@@ -31,17 +34,18 @@ public class CourseActivity extends ListActivity implements
 	String semesterName;
 	String semesterId;
 	TextView courseTest;
+	private TextView selection;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_course);
 
-		yearPath =(TextView) findViewById(R.id.tv_yearpathcourse);
+		yearPath = (TextView) findViewById(R.id.tv_yearpathcourse);
 		semesterPath = (TextView) findViewById(R.id.tv_semesterpath);
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
-			
+
 			semesterName = bundle.getString(SemesterTable.COLUMN_NAME);
 			semesterId = bundle.getString(CourseTable.COLUMN_SEMESTER_ID);
 			yearName = bundle.getString(YearTable.COLUMN_NAME);
@@ -52,7 +56,6 @@ public class CourseActivity extends ListActivity implements
 
 		db = new DatabaseHelper(this);
 		populateList();
-				
 
 		aa = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, courseList);
@@ -61,8 +64,24 @@ public class CourseActivity extends ListActivity implements
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
 
+		selection = (TextView) findViewById(R.id.tv_rightvalue);
+
+		setListAdapter(new IconicAdapter());
 	}
-	
+
+	class IconicAdapter extends ArrayAdapter<String> {
+		IconicAdapter() {
+			super(CourseActivity.this, R.layout.row, R.id.tv_leftvalue,
+					courseList);
+		}
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View row = super.getView(position, convertView, parent);
+			TextView right = (TextView) row.findViewById(R.id.tv_rightvalue);
+			right.setText("TEST GRADE");
+			return row;
+		}
+	}
 
 	public void returnToYear(View v) {
 		Intent path = new Intent(CourseActivity.this, YearActivity.class);
@@ -138,13 +157,14 @@ public class CourseActivity extends ListActivity implements
 	}
 
 	private void populateList() {
-		cursor = db.getReadableDatabase().rawQuery(
-				"SELECT " + CourseTable.COLUMN_NAME + " FROM "
-						+ CourseTable.NAME + " WHERE "
-						+ CourseTable.COLUMN_YEAR_ID + "=" + yearId
-						+ " AND " + CourseTable.COLUMN_SEMESTER_ID + "="
-						+ semesterId + " ORDER BY " + CourseTable.COLUMN_NAME
-						+ " ASC", null);
+		cursor = db.getReadableDatabase()
+				.rawQuery(
+						"SELECT " + CourseTable.COLUMN_NAME + " FROM "
+								+ CourseTable.NAME + " WHERE "
+								+ CourseTable.COLUMN_YEAR_ID + "=" + yearId
+								+ " AND " + CourseTable.COLUMN_SEMESTER_ID
+								+ "=" + semesterId + " ORDER BY "
+								+ CourseTable.COLUMN_NAME + " ASC", null);
 
 		courseList.clear();
 		cursor.moveToFirst();
