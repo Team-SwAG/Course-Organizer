@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CriteriaActivity"
-    android:background="@drawable/ts_background_no_logo"  >
+    android:background="@drawable/ts_background_no_logo"
+    tools:context=".CriteriaActivity" >
 
     <TextView
         android:id="@+id/tv_criteriayear"
@@ -13,7 +13,8 @@
         android:layout_alignParentTop="true"
         android:clickable="true"
         android:onClick="returnToYear"
-        android:text="year" />
+        android:textColor="@android:color/primary_text_dark"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_criteriasemester"
@@ -22,7 +23,8 @@
         android:layout_toRightOf="@id/tv_criteriayear"
         android:clickable="true"
         android:onClick="returnToSemester"
-        android:text="semester" />
+        android:textColor="@android:color/primary_text_dark"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_criteriacourse"
@@ -31,33 +33,44 @@
         android:layout_toRightOf="@id/tv_criteriasemester"
         android:clickable="true"
         android:onClick="returnToCourse"
-        android:text="course" />
+        android:textColor="@android:color/primary_text_dark"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvCriteria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_margin="28dp"
+        android:layout_marginTop="52dp"
         android:text="@string/criteria_criteria"
-        android:textSize="32sp" />
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tvCriteria"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp" />
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginTop="28dp" />
 
     <Button
         android:id="@+id/btn_plusCriteria"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/ts_gold_plus_button"
         android:onClick="plusCriteria"
-        android:textSize="32sp" 
-        android:background="@drawable/ts_gold_plus_button"/>
+        android:textSize="32sp" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ts_logo_layerstyle" />
 
 </RelativeLayout>

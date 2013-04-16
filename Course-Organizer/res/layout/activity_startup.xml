@@ -2,27 +2,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/ts_background_no_logo"  >
+    android:background="@drawable/ts_background_no_logo"
+    tools:context=".MainActivity" >
 
     <Button
         android:id="@+id/btn_plus"
-        android:onClick="plusYear"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="75sp"
-        android:background="@drawable/ts_gold_plus_button" />
+        android:background="@drawable/ts_bubbled_plus_150px"
+        android:onClick="plusYear" />
 
     <TextView
         android:id="@+id/tv_welcome"
-        android:layout_width="150dp"
-        android:layout_height="1490dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/startup_welcome"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="@string/startup_welcome"
-        android:textSize= "32sp" />
-   
+        android:src="@drawable/ts_logo_layerstyle" />
+
 </RelativeLayout>

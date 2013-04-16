@@ -2,20 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:background="@drawable/ts_background_no_logo"
     android:orientation="vertical"
-    tools:context=".YearActivity"
-    android:background="@drawable/ts_background_no_logo"  >
+    tools:context=".YearActivity" >
 
     <ListView
         android:id="@android:id/list"
-        android:layout_below="@+id/tv_year"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/tv_year"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginTop="28dp"
         android:drawSelectorOnTop="false" >
     </ListView>
 
@@ -25,25 +25,38 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="plusYear"
-        android:textSize="32sp"
-        android:background="@drawable/ts_gold_plus_button" />
+        android:background="@drawable/ts_gold_plus_button"
+        android:onClick="plusYear" />
 
     <TextView
         android:id="@id/tv_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="28dp"
+        android:layout_alignLeft="@android:id/list"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="52dp"
         android:text="@string/year_year"
-        android:textSize="32sp" />
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_gpa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_year"
+        android:layout_alignBottom="@id/tv_year"
         android:layout_alignRight="@android:id/list"
-        android:layout_marginTop="28dp"
         android:text="@string/year_gpa"
-        android:textSize="32sp" />
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ts_logo_layerstyle" />
 
 </RelativeLayout>

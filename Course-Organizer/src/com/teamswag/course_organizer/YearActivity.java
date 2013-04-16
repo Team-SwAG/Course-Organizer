@@ -34,7 +34,7 @@ public class YearActivity extends ListActivity implements
 		populateList();
 
 		aa = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, yearList);
+				R.layout.row2, R.id.tv_row, yearList);
 		setListAdapter(aa);
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);

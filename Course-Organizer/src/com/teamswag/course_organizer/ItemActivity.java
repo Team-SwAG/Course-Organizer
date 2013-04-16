@@ -70,25 +70,26 @@ public class ItemActivity extends ListActivity implements
 		db = new DatabaseHelper(this);
 		populateList();
 
-		//aa = new ArrayAdapter<String>(this,
-		//		R.layout.row, R.id.leftvalue, itemList);
-		
-		selection = (TextView) findViewById(R.id.rightvalue);
-		
+		aa = new ArrayAdapter<String>(this, R.layout.row, R.id.tv_leftvalue,
+				itemList);
+
+		selection = (TextView) findViewById(R.id.tv_rightvalue);
+
 		setListAdapter(new IconicAdapter());
 
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
 
 	}
-	
-	class IconicAdapter extends ArrayAdapter<String>{
+
+	class IconicAdapter extends ArrayAdapter<String> {
 		IconicAdapter() {
-			super(ItemActivity.this,R.layout.row,R.id.leftvalue,itemList);
+			super(ItemActivity.this, R.layout.row, R.id.tv_leftvalue, itemList);
 		}
-		public View getView(int position, View convertView, ViewGroup parent){
+
+		public View getView(int position, View convertView, ViewGroup parent) {
 			View row = super.getView(position, convertView, parent);
-			TextView right = (TextView)row.findViewById(R.id.rightvalue);
+			TextView right = (TextView) row.findViewById(R.id.tv_rightvalue);
 			right.setText("TEST GRADE");
 			return row;
 		}
