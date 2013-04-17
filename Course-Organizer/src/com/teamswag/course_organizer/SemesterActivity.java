@@ -46,7 +46,7 @@ public class SemesterActivity extends ListActivity implements
 		
 
 		aa = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, semesterList);
+				R.layout.row2, R.id.tv_row, semesterList);
 		setListAdapter(aa);
 
 		lv = getListView();
@@ -80,8 +80,8 @@ public class SemesterActivity extends ListActivity implements
 		final String name = semesterList.get(position);
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Confirm Delete");
-		b.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+		b.setTitle(R.string.confirm_delete);
+		b.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				SemesterTable.delete(name, yearId, db);
@@ -89,7 +89,7 @@ public class SemesterActivity extends ListActivity implements
 				aa.notifyDataSetChanged();
 			}
 		});
-		b.setNegativeButton("CANCEL", null);
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
 		return true;
@@ -97,10 +97,10 @@ public class SemesterActivity extends ListActivity implements
 
 	public void plusSemester(View view) {
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Add a Semester");
+		b.setTitle(R.string.semester_addsemester);
 		final EditText input = new EditText(this);
 		b.setView(input);
-		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				SemesterTable.add(input.getText().toString(), yearId, db);
@@ -108,7 +108,7 @@ public class SemesterActivity extends ListActivity implements
 				aa.notifyDataSetChanged();
 			}
 		});
-		b.setNegativeButton("CANCEL", null);
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
 	}

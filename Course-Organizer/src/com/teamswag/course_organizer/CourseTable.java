@@ -52,6 +52,7 @@ public class CourseTable {
 			DatabaseHelper db) {
 		String courseId = getId(name, semesterId, db);
 		CriteriaTable.deleteByCourseId(courseId, db);
+		GradeScaleTable.delete(courseId, db);
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + NAME + " WHERE " + COLUMN_ID + "=\'"
 						+ courseId + "\'");
@@ -65,7 +66,9 @@ public class CourseTable {
 						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'", null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			CriteriaTable.deleteByCourseId(cursor.getString(0), db);
+			String courseId = cursor.getString(0);
+			CriteriaTable.deleteByCourseId(courseId, db);
+			GradeScaleTable.delete(courseId, db);
 			cursor.moveToNext();
 		}
 		cursor.close();
@@ -81,7 +84,9 @@ public class CourseTable {
 						+ COLUMN_YEAR_ID + "=\'" + yearId + "\'", null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			CriteriaTable.deleteByCourseId(cursor.getString(0), db);
+			String courseId = cursor.getString(0);
+			CriteriaTable.deleteByCourseId(courseId, db);
+			GradeScaleTable.delete(courseId, db);
 			cursor.moveToNext();
 		}
 		cursor.close();

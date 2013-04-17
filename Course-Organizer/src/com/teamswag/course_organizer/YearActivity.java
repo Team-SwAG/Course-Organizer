@@ -59,8 +59,8 @@ public class YearActivity extends ListActivity implements
 		final String name = yearList.get(position);
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Confirm Delete");
-		b.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+		b.setTitle(R.string.confirm_delete);
+		b.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				YearTable.delete(name, db);
@@ -68,7 +68,7 @@ public class YearActivity extends ListActivity implements
 				aa.notifyDataSetChanged();
 			}
 		});
-		b.setNegativeButton("CANCEL", null);
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
 		return true;
@@ -77,11 +77,12 @@ public class YearActivity extends ListActivity implements
 	public void plusYear(View view) {
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Add a Year");
+		b.setTitle(R.string.year_addyear);
 		final EditText input = new EditText(this);
 		input.setInputType(InputType.TYPE_CLASS_NUMBER);
+		input.setHint(R.string.year_name_hint);
 		b.setView(input);
-		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				YearTable.add(input.getText().toString(), db);
@@ -89,7 +90,7 @@ public class YearActivity extends ListActivity implements
 				aa.notifyDataSetChanged();
 			}
 		});
-		b.setNegativeButton("CANCEL", null);
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 	}
 

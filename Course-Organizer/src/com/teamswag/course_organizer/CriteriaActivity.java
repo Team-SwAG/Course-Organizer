@@ -63,7 +63,7 @@ public class CriteriaActivity extends ListActivity implements
 		populateList();
 
 		aa = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, criteriaList);
+				R.layout.row2, R.id.tv_row, criteriaList);
 		setListAdapter(aa);
 		
 		lv = getListView();

@@ -20,4 +20,22 @@
 	<string name="course_addcourse">Add a Course</string>
 	<string name="criteria_addcriteria">Add a Criterion</string>
 	<string name="items_additems">Add a Item</string>
+	<string name="confirm_delete">Confirm Delete</string>
+	<string name="delete">DELETE</string>
+	<string name="course_name_hint">Course Name</string>
+	<string name="year_name_hint">2013</string>
+	
+	<string name="input_grade_scale">Grade Scale</string>
+	<string name="a_plus">A+    97.0</string>
+	<string name="a">A    93.0</string>
+	<string name="a_minus">A-    90.0</string>
+	<string name="b_plus">B+    87.0</string>
+	<string name="b">B    83.0</string>
+	<string name="b_minus">B-    80.0</string>
+	<string name="c_plus">C+    77.0</string>
+	<string name="c">C    73.0</string>
+	<string name="c_minus">C-    70.0</string>
+	<string name="d_plus">D+    67.0</string>
+	<string name="d">D    63.0</string>
+	<string name="d_minus">D-    60.0</string>
 </resources>

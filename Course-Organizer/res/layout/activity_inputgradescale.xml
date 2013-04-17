@@ -1,0 +1,99 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="0,1,2" >
+
+    <TableRow >
+        <EditText 
+            android:id="@+id/tv_input_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+    </TableRow>
+    
+    <TableRow>
+
+        <EditText
+            android:id="@+id/a_plus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/a_plus" />
+
+        <EditText
+            android:id="@+id/a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/a" />
+
+        <EditText
+            android:id="@+id/a_minus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/a_minus" />
+    </TableRow>
+
+    <TableRow>
+
+        <EditText
+            android:id="@+id/b_plus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/b_plus" />
+
+        <EditText
+            android:id="@+id/b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/b" />
+
+        <EditText
+            android:id="@+id/b_minus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/b_minus" />
+    </TableRow>
+
+    <TableRow>
+
+        <EditText
+            android:id="@+id/c_plus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/c_plus" />
+
+        <EditText
+            android:id="@+id/c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/c" />
+
+        <EditText
+            android:id="@+id/c_minus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/c_minus" />
+    </TableRow>
+
+    <TableRow>
+
+        <EditText
+            android:id="@+id/d_plus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/d_plus" />
+
+        <EditText
+            android:id="@+id/d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/d" />
+
+        <EditText
+            android:id="@+id/d_minus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/d_minus" />
+    </TableRow>
+
+</TableLayout>

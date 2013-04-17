@@ -2,14 +2,13 @@ package com.teamswag.course_organizer;
 
 import java.util.ArrayList;
 
-import com.teamswag.course_organizer.ItemActivity.IconicAdapter;
-
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -66,11 +65,11 @@ public class CourseActivity extends ListActivity implements
 
 		selection = (TextView) findViewById(R.id.tv_rightvalue);
 
-		setListAdapter(new IconicAdapter());
+		setListAdapter(new CourseAdapter());
 	}
 
-	class IconicAdapter extends ArrayAdapter<String> {
-		IconicAdapter() {
+	class CourseAdapter extends ArrayAdapter<String> {
+		CourseAdapter() {
 			super(CourseActivity.this, R.layout.row, R.id.tv_leftvalue,
 					courseList);
 		}
@@ -120,39 +119,87 @@ public class CourseActivity extends ListActivity implements
 		final String name = courseList.get(position);
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Confirm Delete");
-		b.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-				CourseTable.delete(name, semesterId, db);
-				populateList();
-				aa.notifyDataSetChanged();
-			}
-		});
-		b.setNegativeButton("CANCEL", null);
+		b.setTitle(R.string.confirm_delete);
+		b.setPositiveButton(R.string.delete,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						CourseTable.delete(name, semesterId, db);
+						populateList();
+						aa.notifyDataSetChanged();
+					}
+				});
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
 		return true;
 	}
 
 	public void plusCourse(View view) {
-		// Will eventually get to launching the InputCourseActivity
 
-		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Add a Course");
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.course_addcourse);
 		final EditText input = new EditText(this);
-		b.setView(input);
-		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-				CourseTable.add(input.getText().toString(), semesterId, yearId,
-						db);
-				populateList();
-				aa.notifyDataSetChanged();
-			}
-		});
-		b.setNegativeButton("CANCEL", null);
-		b.create().show();
+		final String courseId = null;
+		input.setHint(R.string.course_name_hint);
+		builder.setView(input);
+		builder.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						CourseTable.add(input.getText().toString(), semesterId,
+								yearId, db);
+						populateList();
+						aa.notifyDataSetChanged();
+					}
+				});
+		builder.setNegativeButton(android.R.string.cancel, null);
+		builder.create().show();
+
+		CourseTable.getId(input.getText().toString(), semesterId, db);
+
+		LayoutInflater inflater = LayoutInflater.from(this);
+		View inputLayout = inflater.inflate(R.layout.activity_inputgradescale,
+				null);
+
+		builder = new AlertDialog.Builder(this);
+		builder.setTitle(R.string.input_grade_scale);
+		builder.setView(inputLayout);
+		final EditText aPlus = (EditText) inputLayout.findViewById(R.id.a_plus);
+		final EditText a = (EditText) inputLayout.findViewById(R.id.a);
+		final EditText aMinus = (EditText) inputLayout
+				.findViewById(R.id.a_minus);
+		final EditText bPlus = (EditText) inputLayout.findViewById(R.id.b_plus);
+		final EditText b = (EditText) inputLayout.findViewById(R.id.b);
+		final EditText bMinus = (EditText) inputLayout
+				.findViewById(R.id.b_minus);
+		final EditText cPlus = (EditText) inputLayout.findViewById(R.id.c_plus);
+		final EditText c = (EditText) inputLayout.findViewById(R.id.c);
+		final EditText cMinus = (EditText) inputLayout
+				.findViewById(R.id.c_minus);
+		final EditText dPlus = (EditText) inputLayout.findViewById(R.id.d_plus);
+		final EditText d = (EditText) inputLayout.findViewById(R.id.d);
+		final EditText dMinus = (EditText) inputLayout
+				.findViewById(R.id.d_minus);
+		builder.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						GradeScaleTable.add(courseId, aPlus.getText()
+								.toString(), a.getText().toString(), aMinus
+								.getText().toString(), bPlus.getText()
+								.toString(), b.getText().toString(), bMinus
+								.getText().toString(), cPlus.getText()
+								.toString(), c.getText().toString(), cMinus
+								.getText().toString(), dPlus.getText()
+								.toString(), d.getText().toString(), dMinus
+								.getText().toString(), db);
+						populateList();
+						aa.notifyDataSetChanged();
+					}
+				});
+		builder.setNegativeButton(android.R.string.cancel, null);
+		builder.create().show();
 
 	}
 
