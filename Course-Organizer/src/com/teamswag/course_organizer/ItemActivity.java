@@ -38,7 +38,6 @@ public class ItemActivity extends ListActivity implements
 	private String courseId;
 	private String criteriaName;
 	private String criteriaId;
-	private TextView selection;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
