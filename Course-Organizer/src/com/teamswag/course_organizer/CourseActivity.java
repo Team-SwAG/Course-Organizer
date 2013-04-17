@@ -33,7 +33,6 @@ public class CourseActivity extends ListActivity implements
 	String semesterName;
 	String semesterId;
 	TextView courseTest;
-	private TextView selection;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
