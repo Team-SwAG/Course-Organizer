@@ -56,16 +56,12 @@ public class CourseActivity extends ListActivity implements
 		db = new DatabaseHelper(this);
 		populateList();
 
-		aa = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, courseList);
+		aa = new CourseAdapter();
 		setListAdapter(aa);
 
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
 
-		selection = (TextView) findViewById(R.id.tv_rightvalue);
-
-		setListAdapter(new CourseAdapter());
 	}
 
 	class CourseAdapter extends ArrayAdapter<String> {
@@ -137,34 +133,15 @@ public class CourseActivity extends ListActivity implements
 
 	public void plusCourse(View view) {
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.course_addcourse);
-		final EditText input = new EditText(this);
-		final String courseId = null;
-		input.setHint(R.string.course_name_hint);
-		builder.setView(input);
-		builder.setPositiveButton(android.R.string.ok,
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int whichButton) {
-						CourseTable.add(input.getText().toString(), semesterId,
-								yearId, db);
-						populateList();
-						aa.notifyDataSetChanged();
-					}
-				});
-		builder.setNegativeButton(android.R.string.cancel, null);
-		builder.create().show();
-
-		CourseTable.getId(input.getText().toString(), semesterId, db);
-
 		LayoutInflater inflater = LayoutInflater.from(this);
 		View inputLayout = inflater.inflate(R.layout.activity_inputgradescale,
 				null);
 
-		builder = new AlertDialog.Builder(this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.input_grade_scale);
 		builder.setView(inputLayout);
+		final EditText coursename = (EditText) inputLayout
+				.findViewById(R.id.et_inputcoursename);
 		final EditText aPlus = (EditText) inputLayout.findViewById(R.id.a_plus);
 		final EditText a = (EditText) inputLayout.findViewById(R.id.a);
 		final EditText aMinus = (EditText) inputLayout
@@ -185,6 +162,13 @@ public class CourseActivity extends ListActivity implements
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
+						String string_coursename = coursename.getText()
+								.toString();
+						CourseTable.add(string_coursename, semesterId, yearId,
+								db);
+						String courseId = CourseTable.getId(string_coursename,
+								semesterId, db);
+
 						GradeScaleTable.add(courseId, aPlus.getText()
 								.toString(), a.getText().toString(), aMinus
 								.getText().toString(), bPlus.getText()
@@ -194,6 +178,7 @@ public class CourseActivity extends ListActivity implements
 								.getText().toString(), dPlus.getText()
 								.toString(), d.getText().toString(), dMinus
 								.getText().toString(), db);
+
 						populateList();
 						aa.notifyDataSetChanged();
 					}

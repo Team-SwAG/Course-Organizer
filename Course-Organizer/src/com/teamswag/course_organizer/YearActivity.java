@@ -33,8 +33,8 @@ public class YearActivity extends ListActivity implements
 		db = new DatabaseHelper(this);
 		populateList();
 
-		aa = new ArrayAdapter<String>(this,
-				R.layout.row2, R.id.tv_row, yearList);
+		aa = new ArrayAdapter<String>(this, R.layout.row2, R.id.tv_row,
+				yearList);
 		setListAdapter(aa);
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
@@ -60,14 +60,15 @@ public class YearActivity extends ListActivity implements
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
 		b.setTitle(R.string.confirm_delete);
-		b.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-				YearTable.delete(name, db);
-				populateList();
-				aa.notifyDataSetChanged();
-			}
-		});
+		b.setPositiveButton(R.string.delete,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						YearTable.delete(name, db);
+						populateList();
+						aa.notifyDataSetChanged();
+					}
+				});
 		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
@@ -82,16 +83,20 @@ public class YearActivity extends ListActivity implements
 		input.setInputType(InputType.TYPE_CLASS_NUMBER);
 		input.setHint(R.string.year_name_hint);
 		b.setView(input);
-		b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-				YearTable.add(input.getText().toString(), db);
-				populateList();
-				aa.notifyDataSetChanged();
-			}
-		});
+		b.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+
+						YearTable.add(input.getText().toString(), db);
+
+						populateList();
+						aa.notifyDataSetChanged();
+					}
+				});
 		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
+
 	}
 
 	private void populateList() {
