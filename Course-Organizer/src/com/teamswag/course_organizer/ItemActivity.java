@@ -70,20 +70,18 @@ public class ItemActivity extends ListActivity implements
 		db = new DatabaseHelper(this);
 		populateList();
 
-		aa = new ArrayAdapter<String>(this, R.layout.row, R.id.tv_leftvalue,
-				itemList);
+		aa = new ItemAdapter();
 
-		selection = (TextView) findViewById(R.id.tv_rightvalue);
 
-		setListAdapter(new IconicAdapter());
+		setListAdapter(aa);
 
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
 
 	}
 
-	class IconicAdapter extends ArrayAdapter<String> {
-		IconicAdapter() {
+	class ItemAdapter extends ArrayAdapter<String> {
+		ItemAdapter() {
 			super(ItemActivity.this, R.layout.row, R.id.tv_leftvalue, itemList);
 		}
 
