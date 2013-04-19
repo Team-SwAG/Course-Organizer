@@ -4,45 +4,109 @@ import java.util.ArrayList;
 
 import android.database.Cursor;
 
-public class GradeCalculators {
+public class GradeCalculator {
 
-	
-	
-	String[] criteria = {"Test", "Homework", "Quizzes"};
-	double[] testGrades = {90, 79, 97, 88};
-	double[] homeworkGrades = {83, 55, 46, 78};
-	double[] quizGrades = {97, 67, 77, 87};
-	double testWeight = 0.50;
-	double homeworkWeight = 0.15;
-	double quizWeight = 0.35;
+	private static double getScore(ArrayList<Criteria> list, DatabaseHelper db) {
+		double score = 0;
 
-	GCO = new GCO;
-	
-	
-	for(int i = 0; i < criteria.length(); i++){
-		String x;
-		x = criteria[i];
-	}	
+		for (int i = 0; i < list.size(); i++) {
+			double subtotal = 0;
+			Criteria criteria = list.get(i);
+			Cursor cursor = db.getReadableDatabase().rawQuery(
+					"SELECT " + ItemTable.COLUMN_GRADE + " FROM "
+							+ ItemTable.NAME + " WHERE "
+							+ ItemTable.COLUMN_CRITERIA_ID + "=\'"
+							+ criteria.id + "\'", null);
+			
+			cursor.moveToFirst();
+			while (!cursor.isAfterLast()) {
+				subtotal += Double.parseDouble(cursor.getString(0));
+			}
+			
+			score += (subtotal / cursor.getCount()) * Double.parseDouble(criteria.weight) * 0.01;
+		}
+
+		
+		return score;
+	}
+
+	private static ArrayList<Criteria> getCriteriaList(String courseId,
+			DatabaseHelper db) {
+		ArrayList<Criteria> list = new ArrayList<Criteria>();
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + CriteriaTable.COLUMN_NAME + ", "
+						+ CriteriaTable.COLUMN_WEIGHT + ", "
+						+ CriteriaTable.COLUMN_ID + " FROM "
+						+ CriteriaTable.NAME + " WHERE "
+						+ CriteriaTable.COLUMN_COURSE_ID + "=\'" + courseId
+						+ "\'", null);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			list.add(new Criteria(cursor.getString(0), cursor.getString(1),
+					cursor.getString(2)));
+		}
+
+		return list;
+	}
+
+	public static String getGrade(String courseId, GradeScale gs,
+			DatabaseHelper db) {
+		ArrayList<Criteria> list = getCriteriaList(courseId, db);
+		double score = getScore(list, db);
+		
+		double d_minus = gs.d_minus;
+		double d = gs.d;
+		double d_plus = gs.d_plus;
+		double c_minus = gs.c_minus;
+		double c = gs.c;
+		double c_plus = gs.c_plus;
+		double b_minus = gs.b_minus;
+		double b = gs.b;
+		double b_plus = gs.b_plus;
+		double a_minus = gs.a_minus;
+		double a = gs.a;
+		double a_plus = gs.a_plus;
+
+		if (score < d_minus) {
+			return "F";
+		} else if (score < d) {
+			return "D-";
+		} else if (score < d_plus) {
+			return "D";
+		} else if (score < c_minus) {
+			return "D+";
+		} else if (score < c) {
+			return "C-";
+		} else if (score < c_plus) {
+			return "C";
+		} else if (score < b_minus) {
+			return "C+";
+		} else if (score < b) {
+			return "B-";
+		} else if (score < b_plus) {
+			return "B";
+		} else if (score < a_minus) {
+			return "B+";
+		} else if (score < a) {
+			return "A-";
+		} else if (score < a_plus) {
+			return "A";
+		} else
+			return "A+";
+	}
+
 }
 
-public class GradeCalculator {
-    public static void main(String[] args) {
-    	int avg = 45;
-    	String grade;
-    	switch (avg) {
-    		case (avg>0) && (avg<=60): grade = "F";
-    				break;
-    		case (avg>60) && (avg<=70): grade = "D" ;
-    				break;
-    		case (avg>70) && (avg<=80): grade = "C";
-    				break;
-    		case (avg>80) && (avg<=90): grade = "B";
-    				break;
-    		case (avg>90) && (avg<=100): grade = "A";
-    				break;	
-    	}	
-    }
-    }
+class Criteria {
 
+	protected String name;
+	protected String weight;
+	String id;
 
-
+	public Criteria(String name, String weight, String id) {
+		this.name = name;
+		this.weight = weight;
+		this.id = id;
+	}
+}

@@ -70,9 +70,44 @@ public class CourseActivity extends ListActivity implements
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {
+			String courseId = CourseTable.getId(courseList.get(position),
+					semesterId, db);
 			View row = super.getView(position, convertView, parent);
 			TextView right = (TextView) row.findViewById(R.id.tv_rightvalue);
-			right.setText("TEST GRADE");
+			Cursor cursor = db.getReadableDatabase().rawQuery(
+					"SELECT " + GradeScaleTable.COLUMN_D_MINUS + ", "
+							+ GradeScaleTable.COLUMN_D + ", "
+							+ GradeScaleTable.COLUMN_D_PLUS + ", "
+							+ GradeScaleTable.COLUMN_C_MINUS + ", "
+							+ GradeScaleTable.COLUMN_C + ", "
+							+ GradeScaleTable.COLUMN_C_PLUS + ", "
+							+ GradeScaleTable.COLUMN_B_MINUS + ", "
+							+ GradeScaleTable.COLUMN_B + ", "
+							+ GradeScaleTable.COLUMN_B_PLUS + ", "
+							+ GradeScaleTable.COLUMN_A_MINUS + ", "
+							+ GradeScaleTable.COLUMN_A + ", "
+							+ GradeScaleTable.COLUMN_A_PLUS + " FROM "
+							+ GradeScaleTable.NAME + " WHERE "
+							+ GradeScaleTable.COLUMN_COURSE_ID + "=\'"
+							+ courseId + "\'", null);
+			
+			cursor.moveToFirst();
+			double d_minus = cursor.getDouble(0);
+			double d = cursor.getDouble(1);
+			double d_plus = cursor.getDouble(2);
+			double c_minus = cursor.getDouble(3);
+			double c = cursor.getDouble(4);
+			double c_plus = cursor.getDouble(5);
+			double b_minus = cursor.getDouble(6);
+			double b = cursor.getDouble(7);
+			double b_plus = cursor.getDouble(8);
+			double a_minus = cursor.getDouble(9);
+			double a = cursor.getDouble(10);
+			double a_plus = cursor.getDouble(11);
+
+			GradeScale gs = new GradeScale(d_minus, d, d_plus, c_minus, c,
+					c_plus, b_minus, b, b_plus, a_minus, a, a_plus);
+			right.setText(GradeCalculator.getGrade(courseId, gs, db));
 			return row;
 		}
 	}
