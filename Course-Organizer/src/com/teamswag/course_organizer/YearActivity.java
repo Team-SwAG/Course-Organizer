@@ -87,6 +87,8 @@ public class YearActivity extends ListActivity implements
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
+						if (input.getText().length() == 0)
+							return;
 
 						YearTable.add(input.getText().toString(), db);
 

@@ -61,4 +61,13 @@ public class ItemTable {
 				"DELETE FROM " + NAME + " WHERE " + COLUMN_CRITERIA_ID + "=\'"
 						+ criteriaId + "\'");
 	}
+
+	public static String getGrade(String name, String criteriaId, DatabaseHelper db) {
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + COLUMN_GRADE + " FROM " + NAME + " WHERE "
+						+ COLUMN_NAME + "=\'" + name + "\' AND "
+						+ COLUMN_CRITERIA_ID + "=\'" + criteriaId + "\'", null);
+		cursor.moveToFirst();
+		return cursor.getString(0);
+	}
 }

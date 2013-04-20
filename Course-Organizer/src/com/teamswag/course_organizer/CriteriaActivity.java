@@ -62,10 +62,10 @@ public class CriteriaActivity extends ListActivity implements
 		db = new DatabaseHelper(this);
 		populateList();
 
-		aa = new ArrayAdapter<String>(this,
-				R.layout.row2, R.id.tv_row, criteriaList);
+		aa = new ArrayAdapter<String>(this, R.layout.row2, R.id.tv_row,
+				criteriaList);
 		setListAdapter(aa);
-		
+
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
 
@@ -138,24 +138,30 @@ public class CriteriaActivity extends ListActivity implements
 				null);
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Add a Criterion");
+		b.setTitle(R.string.criteria_addcriteria);
 		b.setView(inputLayout);
 		final EditText criterionName = (EditText) inputLayout
 				.findViewById(R.id.et_criterionname);
 		final EditText criterionWeight = (EditText) inputLayout
 				.findViewById(R.id.et_criterionweight);
-		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-				String name = criterionName.getText().toString();
-				String weight = criterionWeight.getText()
-						.toString();
-				CriteriaTable.add(name, courseId, weight, db);
-				populateList();
-				aa.notifyDataSetChanged();
-			}
-		});
-		b.setNegativeButton("CANCEL", null);
+		b.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						if (criterionName.getText().length() == 0)
+							return;
+						String name = criterionName.getText().toString();
+						String weight;
+						if (criterionWeight.getText().length() == 0)
+							weight = "0";
+						else
+							weight = criterionWeight.getText().toString();
+						CriteriaTable.add(name, courseId, weight, db);
+						populateList();
+						aa.notifyDataSetChanged();
+					}
+				});
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
 	}

@@ -24,8 +24,7 @@ public class StartupActivity extends Activity {
 				"SELECT " + YearTable.COLUMN_NAME + " FROM " + YearTable.NAME,
 				null);
 		if (cursor.getCount() != 0) {
-			Intent intent = new Intent(StartupActivity.this,
-					YearActivity.class);
+			Intent intent = new Intent(StartupActivity.this, YearActivity.class);
 			startActivity(intent);
 			cursor.close();
 			finish();
@@ -39,15 +38,18 @@ public class StartupActivity extends Activity {
 		final EditText input = new EditText(this);
 		input.setInputType(InputType.TYPE_CLASS_NUMBER);
 		b.setView(input);
-		b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int whichButton) {
-				YearTable.add(input.getText().toString(), db);
-				Intent intent = new Intent(StartupActivity.this,
-						YearActivity.class);
-				startActivity(intent);
-			}
-		});
+		b.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int whichButton) {
+						if (input.getText().length() == 0)
+							return;
+						YearTable.add(input.getText().toString(), db);
+						Intent intent = new Intent(StartupActivity.this,
+								YearActivity.class);
+						startActivity(intent);
+					}
+				});
 		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 	}

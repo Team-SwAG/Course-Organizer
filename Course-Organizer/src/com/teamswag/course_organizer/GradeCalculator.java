@@ -8,29 +8,34 @@ public class GradeCalculator {
 
 	private static double getScore(ArrayList<Criteria> list, DatabaseHelper db) {
 		double score = 0;
+		double totalWeight = 0;
 
 		for (int i = 0; i < list.size(); i++) {
 			double subtotal = 0;
+
 			Criteria criteria = list.get(i);
 			Cursor cursor = db.getReadableDatabase().rawQuery(
 					"SELECT " + ItemTable.COLUMN_GRADE + " FROM "
 							+ ItemTable.NAME + " WHERE "
 							+ ItemTable.COLUMN_CRITERIA_ID + "=\'"
 							+ criteria.id + "\'", null);
-			
+
 			int count = cursor.getCount();
 			if (count <= 0)
 				continue;
-			
+
+			double weight = Double.parseDouble(criteria.weight);
+			totalWeight += weight;
+
 			cursor.moveToFirst();
 			while (!cursor.isAfterLast()) {
 				subtotal += Double.parseDouble(cursor.getString(0));
+				cursor.moveToNext();
 			}
-			score += (subtotal / count) * Double.parseDouble(criteria.weight) * 0.01;
+			score += subtotal / count * weight;
 		}
 
-		
-		return score;
+		return (score / totalWeight);
 	}
 
 	private static ArrayList<Criteria> getCriteriaList(String courseId,
@@ -48,6 +53,7 @@ public class GradeCalculator {
 		while (!cursor.isAfterLast()) {
 			list.add(new Criteria(cursor.getString(0), cursor.getString(1),
 					cursor.getString(2)));
+			cursor.moveToNext();
 		}
 
 		return list;
@@ -56,8 +62,12 @@ public class GradeCalculator {
 	public static String getGrade(String courseId, GradeScale gs,
 			DatabaseHelper db) {
 		ArrayList<Criteria> list = getCriteriaList(courseId, db);
+		if (list.isEmpty())
+			return "";
 		double score = getScore(list, db);
-		
+		if (score < 0)
+			return "";
+
 		double d_minus = gs.d_minus;
 		double d = gs.d;
 		double d_plus = gs.d_plus;
@@ -98,14 +108,13 @@ public class GradeCalculator {
 		} else
 			return "A+";
 	}
-
 }
 
 class Criteria {
 
 	protected String name;
 	protected String weight;
-	String id;
+	protected String id;
 
 	public Criteria(String name, String weight, String id) {
 		this.name = name;

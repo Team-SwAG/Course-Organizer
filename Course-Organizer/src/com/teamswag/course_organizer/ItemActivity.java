@@ -71,7 +71,6 @@ public class ItemActivity extends ListActivity implements
 
 		aa = new ItemAdapter();
 
-
 		setListAdapter(aa);
 
 		lv = getListView();
@@ -87,7 +86,8 @@ public class ItemActivity extends ListActivity implements
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View row = super.getView(position, convertView, parent);
 			TextView right = (TextView) row.findViewById(R.id.tv_rightvalue);
-			right.setText("TEST GRADE");
+			String grade = ItemTable.getGrade(itemList.get(position), criteriaId, db);
+			right.setText(grade);
 			return row;
 		}
 	}
@@ -160,9 +160,14 @@ public class ItemActivity extends ListActivity implements
 		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
+				if (itemName.getText().length() == 0)
+					return;
 				String name = itemName.getText().toString();
-				String score = itemScore.getText()
-						.toString();
+				String score;
+				if (itemScore.getText().length() == 0)
+					score = "0";
+				else
+					score = itemScore.getText().toString();
 				ItemTable.add(name, criteriaId, score, db);
 				populateList();
 				aa.notifyDataSetChanged();

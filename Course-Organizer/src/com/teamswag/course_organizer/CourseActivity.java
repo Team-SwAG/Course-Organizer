@@ -74,39 +74,7 @@ public class CourseActivity extends ListActivity implements
 					semesterId, db);
 			View row = super.getView(position, convertView, parent);
 			TextView right = (TextView) row.findViewById(R.id.tv_rightvalue);
-			Cursor cursor = db.getReadableDatabase().rawQuery(
-					"SELECT " + GradeScaleTable.COLUMN_D_MINUS + ", "
-							+ GradeScaleTable.COLUMN_D + ", "
-							+ GradeScaleTable.COLUMN_D_PLUS + ", "
-							+ GradeScaleTable.COLUMN_C_MINUS + ", "
-							+ GradeScaleTable.COLUMN_C + ", "
-							+ GradeScaleTable.COLUMN_C_PLUS + ", "
-							+ GradeScaleTable.COLUMN_B_MINUS + ", "
-							+ GradeScaleTable.COLUMN_B + ", "
-							+ GradeScaleTable.COLUMN_B_PLUS + ", "
-							+ GradeScaleTable.COLUMN_A_MINUS + ", "
-							+ GradeScaleTable.COLUMN_A + ", "
-							+ GradeScaleTable.COLUMN_A_PLUS + " FROM "
-							+ GradeScaleTable.NAME + " WHERE "
-							+ GradeScaleTable.COLUMN_COURSE_ID + "=\'"
-							+ courseId + "\'", null);
-			
-			cursor.moveToFirst();
-			double d_minus = cursor.getDouble(0);
-			double d = cursor.getDouble(1);
-			double d_plus = cursor.getDouble(2);
-			double c_minus = cursor.getDouble(3);
-			double c = cursor.getDouble(4);
-			double c_plus = cursor.getDouble(5);
-			double b_minus = cursor.getDouble(6);
-			double b = cursor.getDouble(7);
-			double b_plus = cursor.getDouble(8);
-			double a_minus = cursor.getDouble(9);
-			double a = cursor.getDouble(10);
-			double a_plus = cursor.getDouble(11);
-
-			GradeScale gs = new GradeScale(d_minus, d, d_plus, c_minus, c,
-					c_plus, b_minus, b, b_plus, a_minus, a, a_plus);
+			GradeScale gs = GradeScaleTable.getGradeScale(courseId, db);
 			right.setText(GradeCalculator.getGrade(courseId, gs, db));
 			return row;
 		}
@@ -172,46 +140,70 @@ public class CourseActivity extends ListActivity implements
 				null);
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.input_grade_scale);
+		builder.setTitle(R.string.course_addcourse);
 		builder.setView(inputLayout);
 		final EditText coursename = (EditText) inputLayout
 				.findViewById(R.id.et_inputcoursename);
-		final EditText aPlus = (EditText) inputLayout.findViewById(R.id.a_plus);
-		final EditText a = (EditText) inputLayout.findViewById(R.id.a);
-		final EditText aMinus = (EditText) inputLayout
+		final EditText aPlusEditText = (EditText) inputLayout
+				.findViewById(R.id.a_plus);
+		final EditText aEditText = (EditText) inputLayout.findViewById(R.id.a);
+		final EditText aMinusEditText = (EditText) inputLayout
 				.findViewById(R.id.a_minus);
-		final EditText bPlus = (EditText) inputLayout.findViewById(R.id.b_plus);
-		final EditText b = (EditText) inputLayout.findViewById(R.id.b);
-		final EditText bMinus = (EditText) inputLayout
+		final EditText bPlusEditText = (EditText) inputLayout
+				.findViewById(R.id.b_plus);
+		final EditText bEditText = (EditText) inputLayout.findViewById(R.id.b);
+		final EditText bMinusEditText = (EditText) inputLayout
 				.findViewById(R.id.b_minus);
-		final EditText cPlus = (EditText) inputLayout.findViewById(R.id.c_plus);
-		final EditText c = (EditText) inputLayout.findViewById(R.id.c);
-		final EditText cMinus = (EditText) inputLayout
+		final EditText cPlusEditText = (EditText) inputLayout
+				.findViewById(R.id.c_plus);
+		final EditText cEditText = (EditText) inputLayout.findViewById(R.id.c);
+		final EditText cMinusEditText = (EditText) inputLayout
 				.findViewById(R.id.c_minus);
-		final EditText dPlus = (EditText) inputLayout.findViewById(R.id.d_plus);
-		final EditText d = (EditText) inputLayout.findViewById(R.id.d);
-		final EditText dMinus = (EditText) inputLayout
+		final EditText dPlusEditText = (EditText) inputLayout
+				.findViewById(R.id.d_plus);
+		final EditText dEditText = (EditText) inputLayout.findViewById(R.id.d);
+		final EditText dMinusEditText = (EditText) inputLayout
 				.findViewById(R.id.d_minus);
 		builder.setPositiveButton(android.R.string.ok,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
+						if (coursename.getText().length() == 0)
+							return;
 						String string_coursename = coursename.getText()
 								.toString();
 						CourseTable.add(string_coursename, semesterId, yearId,
 								db);
 						String courseId = CourseTable.getId(string_coursename,
 								semesterId, db);
+						String aPlus = (aPlusEditText.getText().length() == 0) ? "97"
+								: aPlusEditText.getText().toString();
+						String a = (aEditText.getText().length() == 0) ? "93"
+								: aEditText.getText().toString();
+						String aMinus = (aMinusEditText.getText().length() == 0) ? "90"
+								: aMinusEditText.getText().toString();
+						String bPlus = (bPlusEditText.getText().length() == 0) ? "87"
+								: bPlusEditText.getText().toString();
+						String b = (bEditText.getText().length() == 0) ? "83"
+								: bEditText.getText().toString();
+						String bMinus = (bMinusEditText.getText().length() == 0) ? "80"
+								: bMinusEditText.getText().toString();
+						String cPlus = (cPlusEditText.getText().length() == 0) ? "77"
+								: cPlusEditText.getText().toString();
+						String c = (cEditText.getText().length() == 0) ? "73"
+								: cEditText.getText().toString();
+						String cMinus = (cMinusEditText.getText().length() == 0) ? "70"
+								: cMinusEditText.getText().toString();
+						String dPlus = (dPlusEditText.getText().length() == 0) ? "67"
+								: dPlusEditText.getText().toString();
+						String d = (dEditText.getText().length() == 0) ? "63"
+								: dEditText.getText().toString();
+						String dMinus = (dMinusEditText.getText().length() == 0) ? "60"
+								: dMinusEditText.getText().toString();
 
-						GradeScaleTable.add(courseId, aPlus.getText()
-								.toString(), a.getText().toString(), aMinus
-								.getText().toString(), bPlus.getText()
-								.toString(), b.getText().toString(), bMinus
-								.getText().toString(), cPlus.getText()
-								.toString(), c.getText().toString(), cMinus
-								.getText().toString(), dPlus.getText()
-								.toString(), d.getText().toString(), dMinus
-								.getText().toString(), db);
+						GradeScaleTable.add(courseId, aPlus, a, aMinus, bPlus,
+								b, bMinus, cPlus, c, cMinus, dPlus, d, dMinus,
+								db);
 
 						populateList();
 						aa.notifyDataSetChanged();
