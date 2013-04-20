@@ -2,8 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/ts_background_no_logo"
-    android:orientation="vertical"
     tools:context=".YearActivity" >
 
     <ListView
@@ -57,6 +55,7 @@
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:contentDescription="@string/logo"
         android:src="@drawable/ts_logo_layerstyle" />
 
 </RelativeLayout>

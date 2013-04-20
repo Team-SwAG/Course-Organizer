@@ -16,7 +16,7 @@ public class ItemTable {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
 				+ " TEXT NOT NULL, " + COLUMN_CRITERIA_ID + " INTEGER, "
-				+ COLUMN_GRADE + " REAL NOT NULL, UNIQUE (" + COLUMN_NAME + ", "
+				+ COLUMN_GRADE + " REAL DEFAULT 0, UNIQUE (" + COLUMN_NAME + ", "
 				+ COLUMN_CRITERIA_ID + "));");
 	}
 
@@ -38,7 +38,7 @@ public class ItemTable {
 		return cursor.getString(0);
 	}
 
-	public static void add(String name, String criteriaId, double grade,
+	public static void add(String name, String criteriaId, String grade,
 			DatabaseHelper db) {
 		ContentValues cv = new ContentValues(3);
 

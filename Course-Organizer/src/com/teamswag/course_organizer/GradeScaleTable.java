@@ -20,14 +20,15 @@ public class GradeScaleTable {
 	public static void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_A_PLUS
-				+ " REAL DEFAULT -1, " + COLUMN_A + " REAL DEFAULT -1, "
-				+ COLUMN_A_MINUS + " REAL DEFAULT -1, " + COLUMN_B_PLUS
-				+ " REAL DEFAULT -1, " + COLUMN_B + " REAL DEFAULT -1, "
-				+ COLUMN_B_MINUS + " REAL DEFAULT -1, " + COLUMN_C_PLUS
-				+ " REAL DEFAULT -1, " + COLUMN_C + " REAL DEFAULT -1, "
-				+ COLUMN_C_MINUS + " REAL DEFAULT -1, " + COLUMN_D_PLUS
-				+ " REAL DEFAULT -1, " + COLUMN_D + " REAL DEFAULT -1, "
-				+ COLUMN_D_MINUS + " REAL DEFAULT -1);");
+				+ " REAL DEFAULT 97, " + COLUMN_A + " REAL DEFAULT 93, "
+				+ COLUMN_A_MINUS + " REAL DEFAULT 90, " + COLUMN_B_PLUS
+				+ " REAL DEFAULT 87, " + COLUMN_B + " REAL DEFAULT 83, "
+				+ COLUMN_B_MINUS + " REAL DEFAULT 80, " + COLUMN_C_PLUS
+				+ " REAL DEFAULT 77, " + COLUMN_C + " REAL DEFAULT 73, "
+				+ COLUMN_C_MINUS + " REAL DEFAULT 70, " + COLUMN_D_PLUS
+				+ " REAL DEFAULT 67, " + COLUMN_D + " REAL DEFAULT 63, "
+				+ COLUMN_D_MINUS + " REAL DEFAULT 60, " + COLUMN_COURSE_ID
+				+ " TEXT NOT NULL);");
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,

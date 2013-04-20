@@ -15,7 +15,7 @@ public class CriteriaTable {
 	public static void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
-				+ " TEXT NOT NULL, " + COLUMN_WEIGHT + " REAL NOT NULL, "
+				+ " TEXT NOT NULL, " + COLUMN_WEIGHT + " REAL DEFAULT 0, "
 				+ COLUMN_COURSE_ID + " INTEGER, UNIQUE (" + COLUMN_NAME + ", "
 				+ COLUMN_COURSE_ID + "));");
 	}
@@ -39,7 +39,7 @@ public class CriteriaTable {
 		return cursor.getString(0);
 	}
 
-	public static void add(String name, String courseId, double weight,
+	public static void add(String name, String courseId, String weight,
 			DatabaseHelper db) {
 		ContentValues cv = new ContentValues(3);
 

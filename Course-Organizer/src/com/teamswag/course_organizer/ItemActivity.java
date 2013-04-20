@@ -161,8 +161,8 @@ public class ItemActivity extends ListActivity implements
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String name = itemName.getText().toString();
-				Double score = Double.parseDouble(itemScore.getText()
-						.toString());
+				String score = itemScore.getText()
+						.toString();
 				ItemTable.add(name, criteriaId, score, db);
 				populateList();
 				aa.notifyDataSetChanged();

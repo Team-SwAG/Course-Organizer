@@ -5,6 +5,7 @@
 
     <EditText
         android:id="@+id/et_itemname"
+        android:hint="@string/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true" />

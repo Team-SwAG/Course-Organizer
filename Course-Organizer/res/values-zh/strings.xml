@@ -2,8 +2,6 @@
 <resources>
 
     <string name="app_name">课程助手</string>
-    <string name="hello_world">你好！</string>
-    <string name="menu_settings">设置</string>
     <string name="startup_welcome">欢迎</string>
     <string name="year_year">年份</string>
     <string name="year_gpa">GPA</string>
@@ -23,19 +21,21 @@
     <string name="delete">删除</string>
     <string name="course_name_hint">课程名</string>
     <string name="year_name_hint">2013</string>
-    
     <string name="input_grade_scale">比例表</string>
-	<string name="a_plus">A+    97.0</string>
-	<string name="a">A    93.0</string>
-	<string name="a_minus">A-    90.0</string>
-	<string name="b_plus">B+    87.0</string>
-	<string name="b">B    83.0</string>
-	<string name="b_minus">B-    80.0</string>
-	<string name="c_plus">C+    77.0</string>
-	<string name="c">C    73.0</string>
-	<string name="c_minus">C-    70.0</string>
-	<string name="d_plus">D+    67.0</string>
-	<string name="d">D    63.0</string>
-	<string name="d_minus">D-    60.0</string>
+    <string name="a_plus">A+    97.0</string>
+    <string name="a">A    93.0</string>
+    <string name="a_minus">A-    90.0</string>
+    <string name="b_plus">B+    87.0</string>
+    <string name="b">B    83.0</string>
+    <string name="b_minus">B-    80.0</string>
+    <string name="c_plus">C+    77.0</string>
+    <string name="c">C    73.0</string>
+    <string name="c_minus">C-    70.0</string>
+    <string name="d_plus">D+    67.0</string>
+    <string name="d">D    63.0</string>
+    <string name="d_minus">D-    60.0</string>
+    <string name="homework">功课</string>
+    <string name="name">名</string>
+    <string name="logo">标识</string>
 
 </resources>

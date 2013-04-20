@@ -18,12 +18,15 @@ public class GradeCalculator {
 							+ ItemTable.COLUMN_CRITERIA_ID + "=\'"
 							+ criteria.id + "\'", null);
 			
+			int count = cursor.getCount();
+			if (count <= 0)
+				continue;
+			
 			cursor.moveToFirst();
 			while (!cursor.isAfterLast()) {
 				subtotal += Double.parseDouble(cursor.getString(0));
 			}
-			
-			score += (subtotal / cursor.getCount()) * Double.parseDouble(criteria.weight) * 0.01;
+			score += (subtotal / count) * Double.parseDouble(criteria.weight) * 0.01;
 		}
 
 		

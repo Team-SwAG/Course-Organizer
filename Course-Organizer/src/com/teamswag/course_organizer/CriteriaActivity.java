@@ -148,8 +148,8 @@ public class CriteriaActivity extends ListActivity implements
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				String name = criterionName.getText().toString();
-				Double weight = Double.parseDouble(criterionWeight.getText()
-						.toString());
+				String weight = criterionWeight.getText()
+						.toString();
 				CriteriaTable.add(name, courseId, weight, db);
 				populateList();
 				aa.notifyDataSetChanged();

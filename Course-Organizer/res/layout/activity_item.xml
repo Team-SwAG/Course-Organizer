@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/ts_background_no_logo"  >
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/tv_itemyear"
@@ -13,39 +12,40 @@
         android:clickable="true"
         android:onClick="returnToYear"
         android:textColor="@android:color/primary_text_dark"
+        android:textIsSelectable="false"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_itemsemester"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvCriteria"
         android:layout_toRightOf="@+id/tv_itemyear"
         android:clickable="true"
         android:onClick="returnToSemester"
         android:textColor="@android:color/primary_text_dark"
+        android:textIsSelectable="false"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_itemcourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvCriteria"
         android:layout_toRightOf="@+id/tv_itemsemester"
         android:clickable="true"
         android:onClick="returnToCourse"
         android:textColor="@android:color/primary_text_dark"
+        android:textIsSelectable="false"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_itemcriteria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvCriteria"
         android:layout_toRightOf="@+id/tv_itemcourse"
         android:clickable="true"
         android:onClick="returnToCriteria"
         android:textColor="@android:color/primary_text_dark"
+        android:textIsSelectable="false"
         android:textStyle="bold" />
 
     <TextView
@@ -74,14 +74,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:onClick="plusItem"
-        android:background="@drawable/ts_gold_plus_button" />
+        android:background="@drawable/ts_gold_plus_button"
+        android:onClick="plusItem" />
 
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:contentDescription="@string/logo"
         android:src="@drawable/ts_logo_layerstyle" />
 
 </RelativeLayout>
