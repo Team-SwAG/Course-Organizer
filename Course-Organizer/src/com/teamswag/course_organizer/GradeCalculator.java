@@ -55,6 +55,7 @@ public class GradeCalculator {
 					cursor.getString(2)));
 			cursor.moveToNext();
 		}
+		cursor.close();
 
 		return list;
 	}

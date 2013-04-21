@@ -37,5 +37,7 @@
     <string name="homework">功课</string>
     <string name="name">名</string>
     <string name="logo">标识</string>
+    <string name="three">3</string>
+    <string name="credit_hours">学时</string>
 
 </resources>

@@ -1,35 +1,46 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="0,1,2"
-     >
-     
-    <TableRow >
-        
-        <EditText 
+    android:stretchColumns="0,1,2" >
+
+    <TableRow>
+
+        <EditText
             android:id="@+id/et_inputcoursename"
-            
             android:layout_height="wrap_content"
-           	android:gravity="center_horizontal"
-           	android:layout_span="3"
-           	android:hint="@string/course_course"
-            />
+            android:layout_span="3"
+            android:gravity="center_horizontal"
+            android:hint="@string/course_name_hint" />
     </TableRow>
 
-    <TableRow  >
-        <TextView 
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tv_credithours"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/credit_hours" />
+
+        <EditText
+            android:id="@+id/et_input_credit_hours"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:hint="@string/three" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
             android:id="@+id/tv_input_course"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_span="3"
+            android:gravity="center_horizontal"
             android:singleLine="true"
             android:text="@string/input_grade_scale"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:layout_span="3"
-            />
-        
+            android:textStyle="bold" />
     </TableRow>
-    
+
     <TableRow>
 
         <EditText

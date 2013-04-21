@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class YearActivity extends ListActivity implements
 		OnItemLongClickListener {
@@ -24,6 +25,7 @@ public class YearActivity extends ListActivity implements
 	private DatabaseHelper db;
 	private Cursor cursor;
 	private ListView lv;
+	private TextView gpa;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class YearActivity extends ListActivity implements
 		setListAdapter(aa);
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
+		gpa = (TextView) findViewById(R.id.tv_gpa);
+		gpa.setText(GpaCalculator.getGPA(db) + " GPA");
 	}
 
 	@Override
@@ -67,6 +71,7 @@ public class YearActivity extends ListActivity implements
 						YearTable.delete(name, db);
 						populateList();
 						aa.notifyDataSetChanged();
+						gpa.setText(GpaCalculator.getGPA(db) + " GPA");
 					}
 				});
 		b.setNegativeButton(android.R.string.cancel, null);

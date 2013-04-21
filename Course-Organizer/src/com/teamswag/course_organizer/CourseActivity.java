@@ -144,6 +144,8 @@ public class CourseActivity extends ListActivity implements
 		builder.setView(inputLayout);
 		final EditText coursename = (EditText) inputLayout
 				.findViewById(R.id.et_inputcoursename);
+		final EditText creditHours = (EditText) inputLayout
+				.findViewById(R.id.et_input_credit_hours);
 		final EditText aPlusEditText = (EditText) inputLayout
 				.findViewById(R.id.a_plus);
 		final EditText aEditText = (EditText) inputLayout.findViewById(R.id.a);
@@ -172,8 +174,12 @@ public class CourseActivity extends ListActivity implements
 							return;
 						String string_coursename = coursename.getText()
 								.toString();
-						CourseTable.add(string_coursename, semesterId, yearId,
-								db);
+						String string_creditHours = (creditHours.getText()
+								.length() == 0) ? "3" : creditHours.getText()
+								.toString();
+
+						CourseTable.add(string_coursename, string_creditHours,
+								semesterId, yearId, db);
 						String courseId = CourseTable.getId(string_coursename,
 								semesterId, db);
 						String aPlus = (aPlusEditText.getText().length() == 0) ? "97"

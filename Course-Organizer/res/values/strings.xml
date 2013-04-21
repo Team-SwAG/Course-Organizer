@@ -37,5 +37,7 @@
     <string name="homework">Homework</string>
     <string name="name">Name</string>
     <string name="logo">logo</string>
+    <string name="three">3</string>
+    <string name="credit_hours">Credit Hours</string>
 
 </resources>

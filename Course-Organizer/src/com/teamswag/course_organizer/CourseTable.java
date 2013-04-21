@@ -11,13 +11,15 @@ public class CourseTable {
 	public static final String COLUMN_NAME = "course_name";
 	public static final String COLUMN_YEAR_ID = "year_id";
 	public static final String COLUMN_SEMESTER_ID = "semester_id";
+	public static final String COLUMN_CREDIT_HOURS = "credit_hours";
 
 	public static void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + NAME + " ( " + COLUMN_ID
 				+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME
-				+ " TEXT NOT NULL, " + COLUMN_YEAR_ID + " INTEGER, "
-				+ COLUMN_SEMESTER_ID + " TEXT NOT NULL, UNIQUE (" + COLUMN_NAME
-				+ ", " + COLUMN_SEMESTER_ID + "));");
+				+ " TEXT NOT NULL, " + COLUMN_CREDIT_HOURS + " TEXT NOT NULL, "
+				+ COLUMN_YEAR_ID + " INTEGER, " + COLUMN_SEMESTER_ID
+				+ " TEXT NOT NULL, UNIQUE (" + COLUMN_NAME + ", "
+				+ COLUMN_SEMESTER_ID + "));");
 	}
 
 	public static void onUpgrade(SQLiteDatabase db, int oldVersion,
@@ -37,8 +39,9 @@ public class CourseTable {
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
-	
-	public static String getWeight(String name, String semesterId, DatabaseHelper db) {
+
+	public static String getWeight(String name, String semesterId,
+			DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
 						+ COLUMN_NAME + "=\'" + name + "\' AND "
@@ -46,11 +49,13 @@ public class CourseTable {
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
-	public static void add(String name, String semesterId, String yearId,
+
+	public static void add(String name, String creditHours, String semesterId, String yearId,
 			DatabaseHelper db) {
-		ContentValues cv = new ContentValues(3);
+		ContentValues cv = new ContentValues(4);
 
 		cv.put(COLUMN_NAME, name);
+		cv.put(COLUMN_CREDIT_HOURS, creditHours);
 		cv.put(COLUMN_SEMESTER_ID, semesterId);
 		cv.put(COLUMN_YEAR_ID, yearId);
 		db.getWritableDatabase().insert(NAME, null, cv);
@@ -82,8 +87,7 @@ public class CourseTable {
 		cursor.close();
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + CourseTable.NAME + " WHERE "
-						+ COLUMN_SEMESTER_ID + "=\'" + semesterId
-						+ "\'");
+						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'");
 	}
 
 	protected static void deleteByYearId(String yearId, DatabaseHelper db) {
