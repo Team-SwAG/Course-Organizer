@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
@@ -62,13 +63,27 @@ public class CriteriaActivity extends ListActivity implements
 		db = new DatabaseHelper(this);
 		populateList();
 
-		aa = new ArrayAdapter<String>(this, R.layout.row2, R.id.tv_row,
-				criteriaList);
+		aa = new CriteriaAdapter();
 		setListAdapter(aa);
 
 		lv = getListView();
 		lv.setOnItemLongClickListener(this);
 
+	}
+	class CriteriaAdapter extends ArrayAdapter<String> {
+		CriteriaAdapter() {
+			super(CriteriaActivity.this, R.layout.row, R.id.tv_leftvalue,
+					criteriaList);
+		}
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+			String criteriaWeight = CriteriaTable.getWeight(criteriaList.get(position),
+					courseId, db) + "%";
+			View row = super.getView(position, convertView, parent);
+			TextView right = (TextView) row.findViewById(R.id.tv_rightvalue);
+			right.setText(criteriaWeight);
+			return row;
+		}
 	}
 
 	public void returnToYear(View v) {
@@ -183,5 +198,7 @@ public class CriteriaActivity extends ListActivity implements
 		cursor.close();
 
 	}
+
+
 
 }

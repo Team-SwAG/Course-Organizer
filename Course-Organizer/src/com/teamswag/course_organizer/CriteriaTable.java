@@ -38,6 +38,15 @@ public class CriteriaTable {
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
+	
+	public static String getWeight(String name, String courseId, DatabaseHelper db) {
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + COLUMN_WEIGHT + " FROM " + NAME + " WHERE "
+						+ COLUMN_NAME + "=\'" + name + "\' AND "
+						+ COLUMN_COURSE_ID + "=\'" + courseId + "\'", null);
+		cursor.moveToFirst();
+		return cursor.getString(0);
+	}
 
 	public static void add(String name, String courseId, String weight,
 			DatabaseHelper db) {

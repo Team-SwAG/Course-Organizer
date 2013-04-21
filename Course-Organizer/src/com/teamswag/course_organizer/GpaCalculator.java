@@ -20,35 +20,35 @@ public class GpaCalculator {
 	static double F = 0;
 
 	private static double getScore(ArrayList<Course> list, DatabaseHelper db) {
-		double GPA;
-		double gradePoints;
-		int totalHours;
-		for (int i = 0; i < list.size(); i++) {
-			int creditHours;
+//		double GPA;
+//		double gradePoints;
+//		int totalHours;
+//		for (int i = 0; i < list.size(); i++) {
+//			int creditHours;
 
 
-			Course course = list.get(i);
+//			Course course = list.get(i);
 			// Grade and creditHours need to be stored in the DB
-			Cursor cursor = db.getReadableDatabase().rawQuery(
-					"SELECT " + CourseTable.COLUMN_GRADE + " FROM "
-							+ CourseTable.NAME + " WHERE "
-							+ CourseTable.COLUMN_ID + "=\'" + course.id + "\'",
-					null);
+//			Cursor cursor = db.getReadableDatabase().rawQuery(
+//					"SELECT " + CourseTable.COLUMN_GRADE + " FROM "
+//							+ CourseTable.NAME + " WHERE "
+//							+ CourseTable.COLUMN_ID + "=\'" + course.id + "\'",
+//				null);
+//
+//			int count = cursor.getCount();
+//			if (count <= 0)
+//				continue;
+//
+//			String grade = course.grade.toString();
+//
+//			cursor.moveToFirst();
+//			while (!cursor.isAfterLast()) {
+//				gradePoints += getPoints(grade, creditHours);}
+//				cursor.moveToNext();
+//			}
 
-			int count = cursor.getCount();
-			if (count <= 0)
-				continue;
-
-			String grade = course.grade.toString();
-
-			cursor.moveToFirst();
-			while (!cursor.isAfterLast()) {
-				gradePoints += getPoints(grade, creditHours);}
-				cursor.moveToNext();
-			}
-
-		return (gradePoints / totalHours);
-
+//		return (gradePoints / totalHours);
+return A;
 	}
 
 public static double getPoints(String grade, int creditHours){

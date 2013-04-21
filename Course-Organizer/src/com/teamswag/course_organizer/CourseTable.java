@@ -37,7 +37,15 @@ public class CourseTable {
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
-
+	
+	public static String getWeight(String name, String semesterId, DatabaseHelper db) {
+		Cursor cursor = db.getReadableDatabase().rawQuery(
+				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
+						+ COLUMN_NAME + "=\'" + name + "\' AND "
+						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'", null);
+		cursor.moveToFirst();
+		return cursor.getString(0);
+	}
 	public static void add(String name, String semesterId, String yearId,
 			DatabaseHelper db) {
 		ContentValues cv = new ContentValues(3);
