@@ -25,7 +25,8 @@
             android:id="@+id/et_input_credit_hours"
             android:layout_height="wrap_content"
             android:layout_span="2"
-            android:hint="@string/three" />
+            android:hint="@string/three"
+            android:inputType="number" />
     </TableRow>
 
     <TableRow>
@@ -47,19 +48,22 @@
             android:id="@+id/a_plus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/a_plus" />
+            android:hint="@string/a_plus"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/a" />
+            android:hint="@string/a"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/a_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/a_minus" />
+            android:hint="@string/a_minus"
+            android:inputType="number" />
     </TableRow>
 
     <TableRow>
@@ -68,19 +72,22 @@
             android:id="@+id/b_plus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/b_plus" />
+            android:hint="@string/b_plus"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/b" />
+            android:hint="@string/b"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/b_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/b_minus" />
+            android:hint="@string/b_minus"
+            android:inputType="number" />
     </TableRow>
 
     <TableRow>
@@ -89,19 +96,22 @@
             android:id="@+id/c_plus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/c_plus" />
+            android:hint="@string/c_plus"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/c" />
+            android:hint="@string/c"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/c_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/c_minus" />
+            android:hint="@string/c_minus"
+            android:inputType="number" />
     </TableRow>
 
     <TableRow>
@@ -110,19 +120,22 @@
             android:id="@+id/d_plus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/d_plus" />
+            android:hint="@string/d_plus"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/d" />
+            android:hint="@string/d"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/d_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/d_minus" />
+            android:hint="@string/d_minus"
+            android:inputType="number" />
     </TableRow>
 
 </TableLayout>

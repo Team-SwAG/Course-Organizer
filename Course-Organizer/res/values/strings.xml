@@ -39,5 +39,6 @@
     <string name="logo">logo</string>
     <string name="three">3</string>
     <string name="credit_hours">Credit Hours</string>
+    <string name="spring">Spring</string>
 
 </resources>
