@@ -33,8 +33,8 @@ public class CriteriaTable {
 	public static String getId(String name, String courseId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
-						+ COLUMN_NAME + "=\'" + name + "\' AND "
-						+ COLUMN_COURSE_ID + "=\'" + courseId + "\'", null);
+						+ COLUMN_NAME + "=\"" + name + "\" AND "
+						+ COLUMN_COURSE_ID + "=\"" + courseId + "\"", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
@@ -42,8 +42,8 @@ public class CriteriaTable {
 	public static String getWeight(String name, String courseId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_WEIGHT + " FROM " + NAME + " WHERE "
-						+ COLUMN_NAME + "=\'" + name + "\' AND "
-						+ COLUMN_COURSE_ID + "=\'" + courseId + "\'", null);
+						+ COLUMN_NAME + "=\"" + name + "\" AND "
+						+ COLUMN_COURSE_ID + "=\"" + courseId + "\"", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
@@ -63,15 +63,15 @@ public class CriteriaTable {
 		String criteriaId = getId(name, courseId, db);
 		ItemTable.deleteByCriteriaId(criteriaId, db);
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + NAME + " WHERE " + COLUMN_NAME + "=\'" + name
-						+ "\' AND " + COLUMN_COURSE_ID + "=\'" + courseId + "\'");
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_NAME + "=\"" + name
+						+ "\" AND " + COLUMN_COURSE_ID + "=\"" + courseId + "\"");
 
 	}
 
 	protected static void deleteByCourseId(String courseId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
-						+ COLUMN_COURSE_ID + "=\'" + courseId + "\'", null);
+						+ COLUMN_COURSE_ID + "=\"" + courseId + "\"", null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			ItemTable.deleteByCriteriaId(cursor.getString(0), db);
@@ -80,8 +80,8 @@ public class CriteriaTable {
 		cursor.close();
 		
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + NAME + " WHERE " + COLUMN_COURSE_ID + "=\'"
-						+ courseId + "\'");
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_COURSE_ID + "=\""
+						+ courseId + "\"");
 	}
 
 }

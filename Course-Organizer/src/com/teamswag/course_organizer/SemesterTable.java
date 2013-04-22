@@ -32,8 +32,8 @@ public class SemesterTable {
 	public static String getId(String name, String yearId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
-						+ COLUMN_NAME + "=\'" + name + "\' AND "
-						+ COLUMN_YEAR_ID + "=\'" + yearId + "\'", null);
+						+ COLUMN_NAME + "=\"" + name + "\" AND "
+						+ COLUMN_YEAR_ID + "=\"" + yearId + "\"", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
@@ -50,8 +50,8 @@ public class SemesterTable {
 		String semesterId = getId(name, yearId, db);
 		CourseTable.deleteBySemesterId(semesterId, db);
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + NAME + " WHERE " + COLUMN_ID + "=\'"
-						+ semesterId + "\'");
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_ID + "=\""
+						+ semesterId + "\"");
 
 	}
 

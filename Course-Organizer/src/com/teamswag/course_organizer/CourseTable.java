@@ -34,8 +34,8 @@ public class CourseTable {
 	public static String getId(String name, String semesterId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
-						+ COLUMN_NAME + "=\'" + name + "\' AND "
-						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'", null);
+						+ COLUMN_NAME + "=\"" + name + "\" AND "
+						+ COLUMN_SEMESTER_ID + "=\"" + semesterId + "\"", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
@@ -44,8 +44,8 @@ public class CourseTable {
 			DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
-						+ COLUMN_NAME + "=\'" + name + "\' AND "
-						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'", null);
+						+ COLUMN_NAME + "=\"" + name + "\" AND "
+						+ COLUMN_SEMESTER_ID + "=\"" + semesterId + "\"", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
@@ -67,8 +67,8 @@ public class CourseTable {
 		CriteriaTable.deleteByCourseId(courseId, db);
 		GradeScaleTable.delete(courseId, db);
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + NAME + " WHERE " + COLUMN_ID + "=\'"
-						+ courseId + "\'");
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_ID + "=\""
+						+ courseId + "\"");
 
 	}
 
@@ -76,7 +76,7 @@ public class CourseTable {
 			DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
-						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'", null);
+						+ COLUMN_SEMESTER_ID + "=\"" + semesterId + "\"", null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			String courseId = cursor.getString(0);
@@ -87,13 +87,13 @@ public class CourseTable {
 		cursor.close();
 		db.getWritableDatabase().execSQL(
 				"DELETE FROM " + CourseTable.NAME + " WHERE "
-						+ COLUMN_SEMESTER_ID + "=\'" + semesterId + "\'");
+						+ COLUMN_SEMESTER_ID + "=\"" + semesterId + "\"");
 	}
 
 	protected static void deleteByYearId(String yearId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
-						+ COLUMN_YEAR_ID + "=\'" + yearId + "\'", null);
+						+ COLUMN_YEAR_ID + "=\"" + yearId + "\"", null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			String courseId = cursor.getString(0);

@@ -43,7 +43,7 @@ public class GradeScaleTable {
 	public static String getId(String courseId, DatabaseHelper db) {
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT " + COLUMN_ID + " FROM " + NAME + " WHERE "
-						+ COLUMN_COURSE_ID + "=\'" + courseId + "\'", null);
+						+ COLUMN_COURSE_ID + "=\"" + courseId + "\"", null);
 		cursor.moveToFirst();
 		return cursor.getString(0);
 	}
@@ -86,8 +86,8 @@ public class GradeScaleTable {
 						+ GradeScaleTable.COLUMN_A + ", "
 						+ GradeScaleTable.COLUMN_A_PLUS + " FROM "
 						+ GradeScaleTable.NAME + " WHERE "
-						+ GradeScaleTable.COLUMN_COURSE_ID + "=\'" + courseId
-						+ "\'", null);
+						+ GradeScaleTable.COLUMN_COURSE_ID + "=\"" + courseId
+						+ "\"", null);
 
 		cursor.moveToFirst();
 		double d_minus = cursor.getDouble(0);
@@ -112,8 +112,8 @@ public class GradeScaleTable {
 
 	protected static void delete(String courseId, DatabaseHelper db) {
 		db.getWritableDatabase().execSQL(
-				"DELETE FROM " + NAME + " WHERE " + COLUMN_COURSE_ID + "=\'"
-						+ courseId + "\'");
+				"DELETE FROM " + NAME + " WHERE " + COLUMN_COURSE_ID + "=\""
+						+ courseId + "\"");
 
 	}
 
