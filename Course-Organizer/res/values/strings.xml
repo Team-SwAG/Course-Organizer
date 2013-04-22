@@ -16,7 +16,7 @@
     <string name="semester_addsemester">Add a Semester</string>
     <string name="course_addcourse">Add a Course</string>
     <string name="criteria_addcriteria">Add a Criterion</string>
-    <string name="items_additems">Add a Item</string>
+    <string name="items_additems">Add an Item</string>
     <string name="confirm_delete">Confirm Delete</string>
     <string name="delete">DELETE</string>
     <string name="course_name_hint">Course Name</string>

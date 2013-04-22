@@ -132,8 +132,8 @@ public class CriteriaActivity extends ListActivity implements
 		final String name = criteriaList.get(position);
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Confirm Delete");
-		b.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+		b.setTitle(R.string.confirm_delete);
+		b.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				CriteriaTable.delete(name, courseId, db);
@@ -141,7 +141,7 @@ public class CriteriaActivity extends ListActivity implements
 				aa.notifyDataSetChanged();
 			}
 		});
-		b.setNegativeButton("CANCEL", null);
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
 		return true;
@@ -157,8 +157,10 @@ public class CriteriaActivity extends ListActivity implements
 		b.setView(inputLayout);
 		final EditText criterionName = (EditText) inputLayout
 				.findViewById(R.id.et_criterionname);
+		criterionName.setSingleLine(true);
 		final EditText criterionWeight = (EditText) inputLayout
 				.findViewById(R.id.et_criterionweight);
+		criterionWeight.setSingleLine(true);
 		b.setPositiveButton(android.R.string.ok,
 				new DialogInterface.OnClickListener() {
 					@Override

@@ -131,8 +131,8 @@ public class ItemActivity extends ListActivity implements
 		final String name = itemList.get(position);
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Confirm Delete");
-		b.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+		b.setTitle(R.string.confirm_delete);
+		b.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				ItemTable.delete(name, criteriaId, db);
@@ -140,7 +140,7 @@ public class ItemActivity extends ListActivity implements
 				aa.notifyDataSetChanged();
 			}
 		});
-		b.setNegativeButton("CANCEL", null);
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
 		return true;
@@ -151,13 +151,13 @@ public class ItemActivity extends ListActivity implements
 		View inputLayout = inflater.inflate(R.layout.activity_inputitems, null);
 
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
-		b.setTitle("Add an Item");
+		b.setTitle(R.string.items_additems);
 		b.setView(inputLayout);
 		final EditText itemName = (EditText) inputLayout
 				.findViewById(R.id.et_itemname);
 		final EditText itemScore = (EditText) inputLayout
 				.findViewById(R.id.et_itemscore);
-		b.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int whichButton) {
 				if (itemName.getText().length() == 0)
@@ -173,7 +173,7 @@ public class ItemActivity extends ListActivity implements
 				aa.notifyDataSetChanged();
 			}
 		});
-		b.setNegativeButton("CANCEL", null);
+		b.setNegativeButton(android.R.string.cancel, null);
 		b.create().show();
 
 	}

@@ -22,17 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".YearActivity"/>
-        <activity
-            android:name=".SemesterActivity"/>
-        <activity
-            android:name=".CourseActivity"/>
-        <activity
-            android:name=".CriteriaActivity"/>
-        <activity
-            android:name=".ItemActivity"/>
-        
+        <activity android:name=".YearActivity" />
+        <activity android:name=".SemesterActivity" />
+        <activity android:name=".CourseActivity" />
+        <activity android:name=".CriteriaActivity" />
+        <activity android:name=".ItemActivity" />
     </application>
 
 </manifest>

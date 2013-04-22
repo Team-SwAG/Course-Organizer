@@ -99,6 +99,7 @@ public class SemesterActivity extends ListActivity implements
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
 		b.setTitle(R.string.semester_addsemester);
 		final EditText input = new EditText(this);
+		input.setSingleLine(true);
 		input.setHint(R.string.spring);
 		b.setView(input);
 		b.setPositiveButton(android.R.string.ok,

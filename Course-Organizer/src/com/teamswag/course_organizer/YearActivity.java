@@ -85,6 +85,7 @@ public class YearActivity extends ListActivity implements
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
 		b.setTitle(R.string.year_addyear);
 		final EditText input = new EditText(this);
+		input.setSingleLine(true);
 		input.setInputType(InputType.TYPE_CLASS_NUMBER);
 		input.setHint(R.string.year_name_hint);
 		b.setView(input);
@@ -95,7 +96,9 @@ public class YearActivity extends ListActivity implements
 						if (input.getText().length() == 0)
 							return;
 
-						YearTable.add(input.getText().toString(), db);
+						String year = Integer.toString(Math.abs(Integer.valueOf(
+								input.getText().toString())));
+						YearTable.add(year, db);
 
 						populateList();
 						aa.notifyDataSetChanged();

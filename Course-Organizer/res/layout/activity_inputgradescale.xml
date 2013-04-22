@@ -10,7 +10,8 @@
             android:layout_height="wrap_content"
             android:layout_span="3"
             android:gravity="center_horizontal"
-            android:hint="@string/course_name_hint" />
+            android:hint="@string/course_name_hint"
+            android:singleLine="true" />
     </TableRow>
 
     <TableRow>
@@ -26,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_span="2"
             android:hint="@string/three"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
     </TableRow>
 
     <TableRow>
@@ -49,21 +51,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/a_plus"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/a"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/a_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/a_minus"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
     </TableRow>
 
     <TableRow>
@@ -73,21 +78,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/b_plus"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/b"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/b_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/b_minus"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
     </TableRow>
 
     <TableRow>
@@ -97,21 +105,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/c_plus"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/c"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/c_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/c_minus"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
     </TableRow>
 
     <TableRow>
@@ -121,21 +132,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/d_plus"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/d"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/d_minus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/d_minus"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true" />
     </TableRow>
 
 </TableLayout>
